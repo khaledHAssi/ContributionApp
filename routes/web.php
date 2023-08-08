@@ -17,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/members',MemberController::class);
 Route::resource('/subscribes',SubscribeController::class);
-Route::get('master',[MemberController::class,'master']);
+Route::get('',[MemberController::class,'master'])->name('home');
