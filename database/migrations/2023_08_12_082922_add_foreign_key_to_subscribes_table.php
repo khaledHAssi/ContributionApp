@@ -12,14 +12,12 @@ return new class extends Migration
     public function up()
     {
         Schema::table('subscribes', function (Blueprint $table) {
-            $table->unsignedBigInteger('member_id')->after('id');
-            $table->foreign('member_id')
-                ->references('id')->on('members')
+            $table->unsignedBigInteger('investment_id')->after('member_id');
+            $table->foreign('investment_id')
+                ->references('id')->on('investments')
                 ->onDelete('cascade');
         });
     }
-
-
 
     /**
      * Reverse the migrations.

@@ -63,11 +63,24 @@
                             <select name="member_id"id="member_id"
                                 class="form-control @error('member_id') is-invalid @enderror">
                                 @foreach ($members as $member)
-                                    <option value="{{ $member->id }}">{{ $member->id . ' - ' . $member->type }}
+                                    <option value="{{ $member->id }}">{{ $member->name . ' - ' . $member->type }}
                                     </option>
                                 @endforeach
                             </select>
                             @error('member_id')
+                                <small class="invalid-feedback">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="member_id">Investment id</label>
+                            <select name="investment_id"id="investment_id"
+                                class="form-control @error('investment_id') is-invalid @enderror">
+                                @foreach ($investments as $investment)
+                                    <option value="{{ $investment->id }}">{{ $investment->name . ' - ' . $investment->type }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('investment_id')
                                 <small class="invalid-feedback">{{ $message }}</small>
                             @enderror
                         </div>

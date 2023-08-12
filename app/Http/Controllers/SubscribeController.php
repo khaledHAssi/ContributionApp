@@ -14,7 +14,7 @@ class SubscribeController extends Controller
      */
     public function index()
     {
-        $subscriptions = subscribe::all();
+        $subscriptions = Subscribe::all();
         $subscriptions = $subscriptions->load('members');
         return response()->view('subscribes.index',compact('subscriptions'));
     }
@@ -25,7 +25,8 @@ class SubscribeController extends Controller
     public function create()
     {
         $members = DB::select('SELECT `id`, `name` , `type`FROM `members`');
-        return view('subscribes.create',compact('members'));
+        $investments = DB::select('SELECT `id`, `name` FROM `investments`');
+        return view('subscribes.create',compact('members','investments'));
     }
 
     /**
@@ -41,7 +42,8 @@ class SubscribeController extends Controller
         ]);
         $subscribe = new subscribe;
         $subscribe->date =$request->input('date');
-        $subscribe->member_id =$request->input('member_id');
+        $subscribe->member_id = $request->input('member_id');
+        $subscribe->investment_id = $request->input('investment_id');
         $subscribe->value =$request->input('value');
         $saved= $subscribe->save();
             if($saved){

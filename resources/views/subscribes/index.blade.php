@@ -43,13 +43,13 @@
                                     <tr>
                                         <td>{{ $loop->index +1 }}</td>
                                         <td>{{ $user->members->name }} -
-                                            @if ($user->members->type == "subscriber")
+                                            {{-- @if ($user->members->type == "subscriber")
 
-                                            <span class="text-green">{{$user->members->type}}</span>
+                                            <span class="text-green">{{$user->members->name}}</span>
                                             @else
-                                            <span class="text-danger">{{$user->members->type}}</span>
+                                            <span class="text-danger">{{$user->members->name}}</span>
 
-                                            @endif
+                                            @endif --}}
                                         </td>
                                         <td>{{ $user->date }}</td>
                                         <td>{{ $user->value }}</td>
