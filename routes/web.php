@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\SubscribeController;
+use App\Http\Controllers\InvestmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/members',MemberController::class);
-Route::resource('/subscribes',SubscribeController::class);
-Route::get('',[MemberController::class,'master'])->name('home');
+Route::resource('/members', MemberController::class);
+Route::resource('/subscribes', SubscribeController::class);
+Route::resource('/investments', InvestmentController::class);
+
+
+
+Route::get('', [MemberController::class, 'master'])->name('home');
