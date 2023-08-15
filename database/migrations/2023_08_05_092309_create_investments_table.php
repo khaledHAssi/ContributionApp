@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('investments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subscribe_id')->constrained();
             $table->string('name');
-            $table->string('exchange_field');
             $table->integer('total');
             $table->timestamps();
         });

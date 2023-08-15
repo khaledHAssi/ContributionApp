@@ -16,7 +16,7 @@ class SubscribeController extends Controller
     {
         $subscriptions = Subscribe::all();
         $subscriptions = $subscriptions->load('members');
-        return response()->view('subscribes.index',compact('subscriptions'));
+        return response()->view('subscribes.index', compact('subscriptions'));
     }
 
     /**
@@ -26,7 +26,7 @@ class SubscribeController extends Controller
     {
         $members = DB::select('SELECT `id`, `name` , `type`FROM `members`');
         $investments = DB::select('SELECT `id`, `name` FROM `investments`');
-        return view('subscribes.create',compact('members','investments'));
+        return view('subscribes.create', compact('members', 'investments'));
     }
 
     /**
@@ -35,20 +35,20 @@ class SubscribeController extends Controller
     public function store(Request $request)
     {
         $validator =
-        $request->validate([
-            'member_id' => 'required',
-            'value' => 'required|numeric',
-            'date' => 'required|',
-        ]);
+            $request->validate([
+                'member_id' => 'required',
+                'value' => 'required|numeric',
+                'date' => 'required|',
+            ]);
         $subscribe = new subscribe;
-        $subscribe->date =$request->input('date');
+        $subscribe->date = $request->input('date');
         $subscribe->member_id = $request->input('member_id');
         $subscribe->investment_id = $request->input('investment_id');
-        $subscribe->value =$request->input('value');
-        $saved= $subscribe->save();
-            if($saved){
+        $subscribe->value = $request->input('value');
+        $saved = $subscribe->save();
+        if ($saved) {
             return redirect()->route('subscribes.index')->with('msg', 'Subscribe Created Successfully')->with('type', 'success');
-        }else{
+        } else {
             return redirect()->back()->with('msg', 'Subscribe Create Failed')->with('type', 'danger');
         }
     }
@@ -69,28 +69,28 @@ class SubscribeController extends Controller
         $subscribe = subscribe::findOrFail($id);
         $members = DB::select('SELECT `id`, `name` , `type`FROM `members` ');
         $subscribe = $subscribe->load('members');
-        return view('subscribes.edit',compact('subscribe','members'));
+        return view('subscribes.edit', compact('subscribe', 'members'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $validator =
-        $request->validate([
-            'member_id' => 'required',
-            'value' => 'required|numeric',
-            'date' => 'required|',
-        ]);
+            $request->validate([
+                'member_id' => 'required',
+                'value' => 'required|numeric',
+                'date' => 'required|',
+            ]);
         $subscribe = subscribe::findOrFail($id);
-        $subscribe->value =$request->input('value');
-        $subscribe->date =$request->input('date');
-        $subscribe->member_id =$request->input('member_id');
-        $saved= $subscribe->save();
-            if($saved){
+        $subscribe->value = $request->input('value');
+        $subscribe->date = $request->input('date');
+        $subscribe->member_id = $request->input('member_id');
+        $saved = $subscribe->save();
+        if ($saved) {
             return redirect()->route('subscribes.index')->with('msg', 'Subscribe updated Successfully')->with('type', 'success');
-        }else{
+        } else {
             return redirect()->back()->with('msg', 'Subscribe update Failed')->with('type', 'danger');
         }
     }
@@ -102,9 +102,9 @@ class SubscribeController extends Controller
     {
         $subscribe = subscribe::findOrFail($id);
         $deleted = $subscribe->delete();
-        if($deleted){
+        if ($deleted) {
             return redirect()->back()->with('msg', 'Subscribe deleted successfully')->with('type', 'success');
-        }else{
+        } else {
             return redirect()->back()->with('msg', 'Subscribe delete Failed')->with('type', 'danger');
         }
     }
