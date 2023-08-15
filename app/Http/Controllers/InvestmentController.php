@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Investment;
+use App\Models\Subscribe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -29,7 +30,8 @@ class InvestmentController extends Controller
      */
     public function create()
     {
-        return view('investments.create');
+        $subscribers = Subscribe::all();
+        return view('investments.create' , compact('subscribers'));
     }
 
     /**

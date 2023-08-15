@@ -35,6 +35,7 @@
                                 <th>Subscribe Id </th>
                                 <th>Name</th>
                                 <th>Total</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,8 +45,7 @@
                                 <td>{{ $investment->subscribe_id}}</td>
                                 <td>{{ $investment->name}}</td>
                                 <td>{{ $investment->total }}</td>
-                            </tr>
-                            <tr class="d-flex">
+                            <td class="d-flex">
                                 <a href="{{ route('investments.edit', $investment) }}"
                                     class="mr-2 btn btn-primary btn-sm">
                                     <i class="fas fa-edit"></i>
@@ -58,14 +58,18 @@
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
-                            </tr>
+                            </td>
 
                             @empty
-                            <tr>
+                            <td>
                                 <td colspan="6">No Data Found</td>
-                            </tr>
+                            </td>
+
                             @endforelse
+                            </tr>
+
                         </tbody>
+
                     </table>
                 </div>
             </div>

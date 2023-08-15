@@ -15,14 +15,8 @@ class SubscribeController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         $subscriptions = Subscribe::with(['members', 'investments'])->get();
         return response()->view('subscribes.index',compact('subscriptions'));
-=======
-        $subscriptions = Subscribe::all();
-        $subscriptions = $subscriptions->load('members');
-        return response()->view('subscribes.index', compact('subscriptions'));
->>>>>>> df1b5c55bf2ebee9d571f68f0a42af702fdb9653
     }
 
     /**
@@ -49,7 +43,6 @@ class SubscribeController extends Controller
         $subscribe = new subscribe;
         $subscribe->date = $request->input('date');
         $subscribe->member_id = $request->input('member_id');
-<<<<<<< HEAD
         $subscribe->value =$request->input('value');
         $subscribe->investment_id = $request->input('investment_id');
         $investment = Investment::find($request->input('investment_id'));
@@ -57,17 +50,16 @@ class SubscribeController extends Controller
         $investment->save();
         $saved= $subscribe->save();
         if($saved){
-=======
         $subscribe->investment_id = $request->input('investment_id');
         $subscribe->value = $request->input('value');
         $saved = $subscribe->save();
         if ($saved) {
->>>>>>> df1b5c55bf2ebee9d571f68f0a42af702fdb9653
             return redirect()->route('subscribes.index')->with('msg', 'Subscribe Created Successfully')->with('type', 'success');
         } else {
             return redirect()->back()->with('msg', 'Subscribe Create Failed')->with('type', 'danger');
         }
     }
+}
 
     /**
      * Display the specified resource.

@@ -58,7 +58,21 @@
                 @endif
                 <form action="{{ route('investments.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <div class="mb-3">
+                        <label for="subscriber_id">Subscriber value & created @auth
 
+                        @endauth</label>
+                        <select name="subscriber_id"id="subscriber_id"
+                            class="form-control @error('subscriber_id') is-invalid @enderror">
+                            @foreach ($subscribers as $member)
+                                <option value="{{ $member->id }}">{{ $member->value }} - {{ $member->created_at}}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('subscriber_id')
+                            <small class="invalid-feedback">{{ $message }}</small>
+                        @enderror
+                    </div>
                     <div class="mb-3">
                         <label for="name">Name</label>
                         <input id="name" name="name" type="text" placeholder="Name"
