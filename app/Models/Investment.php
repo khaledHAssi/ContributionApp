@@ -10,6 +10,6 @@ class Investment extends Model
     use HasFactory;
     public function subscribes()
     {
-        return $this->hasMany(Subscribe::class , 'investment_id');
+        return $this->hasMany(Subscribe::class, 'investment_id')->withDefault();
     }
 }

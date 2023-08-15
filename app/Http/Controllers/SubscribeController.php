@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Investment;
 use App\Models\Member;
 use App\Models\subscribe;
 use Illuminate\Http\Request;
@@ -14,8 +15,7 @@ class SubscribeController extends Controller
      */
     public function index()
     {
-        $subscriptions = Subscribe::all();
-        $subscriptions = $subscriptions->load('members');
+        $subscriptions = Subscribe::with(['members', 'investments'])->get();
         return response()->view('subscribes.index',compact('subscriptions'));
     }
 
@@ -43,10 +43,13 @@ class SubscribeController extends Controller
         $subscribe = new subscribe;
         $subscribe->date =$request->input('date');
         $subscribe->member_id = $request->input('member_id');
-        $subscribe->investment_id = $request->input('investment_id');
         $subscribe->value =$request->input('value');
+        $subscribe->investment_id = $request->input('investment_id');
+        $investment = Investment::find($request->input('investment_id'));
+        $investment->total += $subscribe->value;
+        $investment->save();
         $saved= $subscribe->save();
-            if($saved){
+        if($saved){
             return redirect()->route('subscribes.index')->with('msg', 'Subscribe Created Successfully')->with('type', 'success');
         }else{
             return redirect()->back()->with('msg', 'Subscribe Create Failed')->with('type', 'danger');

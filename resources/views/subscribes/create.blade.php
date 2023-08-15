@@ -76,7 +76,7 @@
                             <select name="investment_id"id="investment_id"
                                 class="form-control @error('investment_id') is-invalid @enderror">
                                 @foreach ($investments as $investment)
-                                    <option value="{{ $investment->id }}">{{ $investment->name . ' - ' . $investment->type }}
+                                    <option value="{{ $investment->id }}">{{ $investment->name . ' - ' . $investment->name }}
                                     </option>
                                 @endforeach
                             </select>

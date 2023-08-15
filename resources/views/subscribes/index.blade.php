@@ -32,10 +32,11 @@
                             <thead>
                                 <tr class="bg-dark text-white">
                                     <th>ID</th>
-                                    <th>Name</th>
                                     <th>Member</th>
+                                    <th>Investments</th>
                                     <th>Date</th>
                                     <th>Value</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,13 +44,16 @@
                                     <tr>
                                         <td>{{ $loop->index +1 }}</td>
                                         <td>{{ $user->members->name }} -
-                                            {{-- @if ($user->members->type == "subscriber")
+                                            @if ($user->members->type == "subscriber")
 
-                                            <span class="text-green">{{$user->members->name}}</span>
+                                            <span class="text-green">{{$user->members->type}}</span>
                                             @else
-                                            <span class="text-danger">{{$user->members->name}}</span>
+                                            <span class="text-danger">{{$user->members->type}}</span>
 
-                                            @endif --}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <span class="text-green">{{$user->investments->name}}</span>
                                         </td>
                                         <td>{{ $user->date }}</td>
                                         <td>{{ $user->value }}</td>
