@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="content py-4">
+    <h1 class="text-primary">Investments </h1>
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
@@ -45,27 +46,28 @@
                                 <td>{{ $investment->subscribe_id}}</td>
                                 <td>{{ $investment->name}}</td>
                                 <td>{{ $investment->total }}</td>
-                            <td class="d-flex">
-                                <a href="{{ route('investments.edit', $investment) }}"
-                                    class="mr-2 btn btn-primary btn-sm">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <form class="d-inline" action="{{ route('investments.destroy', $investment->id) }}"
-                                    method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button onclick="return confirm('Are you sure!?')" class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
-                            </td>
+                                <td class="d-flex">
+                                    <a href="{{ route('investments.edit', $investment) }}"
+                                        class="mr-2 btn btn-primary btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form class="d-inline" action="{{ route('investments.destroy', $investment->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button onclick="return confirm('Are you sure!?')"
+                                            class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
 
-                            @empty
-                            <td>
+                                @empty
+                                <td>
                                 <td colspan="6">No Data Found</td>
-                            </td>
+                                </td>
 
-                            @endforelse
+                                @endforelse
                             </tr>
 
                         </tbody>

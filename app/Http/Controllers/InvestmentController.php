@@ -31,7 +31,7 @@ class InvestmentController extends Controller
     public function create()
     {
         $subscribers = Subscribe::all();
-        return view('investments.create' , compact('subscribers'));
+        return view('investments.create', compact('subscribers'));
     }
 
     /**

@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="content py-4">
-    <h1 class="text-primary">Members </h1>
+    <h1 class="text-primary">Expenses </h1>
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
@@ -14,7 +14,7 @@
                     <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
                     @endif
 
-                    <a href="{{ route('members.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
+                    <a href="{{ route('expenses.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
                         class="btn btn-success mr-5">{{ __('Add New') }}</a>
                     <div class="card-header bg-dark">
                         <div class="card-tools">
@@ -34,36 +34,24 @@
                             <tr class="bg-dark text-white">
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Job</th>
-                                <th>identification_number</th>
-                                <th>Monthly number</th>
-                                <th>Family members number</th>
-                                <th>phone</th>
-                                <th>Contributions</th>
-                                <th>Actions</th>
+                                <th>Total</th>
+
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($members as $user)
+                            @forelse ($expenses as $expense )
                             <tr>
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $user->name }} - @if ($user->type == 'subscriber')
-                                    <span class="text-green">{{ $user->type }}</span>
-                                    @else
-                                    <span class="text-danger">{{ $user->type }}</span>
-                                    @endif
-                                </td>
-                                <td>{{ $user->job }}</td>
-                                <td>{{ $user->identification_number }}</td>
-                                <td>{{ $user->monthly_number }}</td>
-                                <td>{{ $user->family_members_number }}</td>
-                                <td>{{ $user->phone }}</td>
-                                <td>{{ $user->contributions }}</td>
+                                <td>{{ $expense->id}}</td>
+
+                                <td>{{ $expense->name}}</td>
+                                <td>{{ $expense->total_expenses }}</td>
+
                                 <td class="d-flex">
-                                    <a href="{{ route('members.edit', $user) }}" class="mr-2 btn btn-primary btn-sm">
+                                    <a href="{{ route('expenses.edit', $expense) }}"
+                                        class="mr-2 btn btn-primary btn-sm">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form class="d-inline" action="{{ route('members.destroy', $user->id) }}"
+                                    <form class="d-inline" action="{{ route('expenses.destroy', $expense->id) }}"
                                         method="POST">
                                         @csrf
                                         @method('delete')
@@ -73,13 +61,17 @@
                                         </button>
                                     </form>
                                 </td>
-                            </tr>
-                            @empty
-                            <tr>
+
+                                @empty
+                                <td>
                                 <td colspan="6">No Data Found</td>
+                                </td>
+
+                                @endforelse
                             </tr>
-                            @endforelse
+
                         </tbody>
+
                     </table>
                 </div>
             </div>

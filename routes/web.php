@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\InvestmentController;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/members', MemberController::class);
 Route::resource('/subscribes', SubscribeController::class);
 Route::resource('/investments', InvestmentController::class);
-
+Route::resource('/expenses', ExpensesController::class);
 
 
 Route::get('', [MemberController::class, 'master'])->name('home');
