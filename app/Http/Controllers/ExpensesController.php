@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Expenses;
+use App\Models\Expense;
+use App\Models\Investment;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use function Laravel\Prompts\error;
 
 class ExpensesController extends Controller
 {
@@ -17,7 +22,8 @@ class ExpensesController extends Controller
     public function index()
     {
         //
-        $expenses = Expenses::all();
+        $expenses = Expense::all();
+        $expenses = $expenses->load('investment');
         return response()->view('expenses.index', compact('expenses'));
     }
 
@@ -26,8 +32,8 @@ class ExpensesController extends Controller
      */
     public function create()
     {
-        //
-        return view('expenses.create');
+        $investments = Investment::all();
+        return view('expenses.create', compact('investments'));
     }
 
     /**
@@ -37,26 +43,36 @@ class ExpensesController extends Controller
     {
         //
         $validator =
-            $request->validate([
+                    $request->validate([
                 'name' => 'required|string|min:3|max:20|',
                 'details' => 'required|string|min:20',
-                'total_expenses' => 'required|numeric',
+                'investment_id' => 'required|',
+                'total_expenses' => 'required|numeric|',
             ]);
-        $expenses = new Expenses();
+        $expenses = new Expense();
         $expenses->name = $request->input('name');
-        $expenses->details = $request->input('details');
         $expenses->total_expenses = $request->input('total_expenses');
-        $saved = $expenses->save();
-        if ($saved) {
-            return redirect()->route('expenses.index')->with('msg', 'Expenses Created Successfully')->with('type', 'success');
-        } else {
-            return redirect()->back()->with('msg', 'Expenses Create Failed')->with('type', 'danger');
+        $expenses->details = $request->input('details');
+        // investment total ----------------------------------------------------------------
+        $expenses->investment_id = $request->input('investment_id');
+        $investment = Investment::find($request->input('investment_id'));
+        if ($expenses->total_expenses <= $investment->total) {
+            $investment->total -= $expenses->total_expenses;
+        }else{
+            return redirect()->back()->with('msg', 'total expense cannot be more than investment total')->with('type', 'danger');
         }
-    }
-    /**
+        $saved = $expenses->save();
+        $save = $investment->save();
+        if ($saved && $save) {
+            return redirect()->route('expenses.index')->with('msg', 'Expense Created Successfully')->with('type', 'success');
+        } else {
+            return redirect()->back()->with('msg', 'Expense Create Failed')->with('type', 'danger');
+        }
+}
+/**
      * Display the specified resource.
      */
-    public function show(Expenses $expenses)
+    public function show(Expense $expenses)
     {
         //
     }
@@ -66,9 +82,10 @@ class ExpensesController extends Controller
     public function edit($id)
     {
         //
-        $expenses = Expenses::find($id);
-
-        return view('expenses.edit', compact('expenses'));
+        $expenses = Expense::find($id);
+        $investments = DB::select('SELECT `id`, `name` , `total`FROM `investments` ');
+        $expenses = $expenses->load('investment');
+        return view('expenses.edit', compact('expenses', 'investments'));
     }
     /**
      * Update the specified resource in storage.
@@ -78,23 +95,22 @@ class ExpensesController extends Controller
         //
         $validator =
             $request->validate([
-
                 'name' => 'required|string|min:3|max:20|',
                 'details' => 'required|string|min:20',
                 'total_expenses' => 'required|numeric',
-
             ]);
-
-        $expenses = Expenses::findOrFail($id);
+        $investment = Investment::find($request->input('investment_id'));
+        $expenses = Expense::findOrFail($id);
         $expenses->name = $request->input('name');
         $expenses->details = $request->input('details');
         $expenses->total_expenses = $request->input('total_expenses');
+        $expenses->investment_id = $request->input('investment_id');
 
         $saved = $expenses->save();
         if ($saved) {
-            return redirect()->route('expenses.index')->with('msg', 'Expenses updated Successfully')->with('type', 'success');
+            return redirect()->route('expenses.index')->with('msg', 'Expense updated Successfully')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', ' Expenses update Failed ')->with('type', 'danger');
+            return redirect()->back()->with('msg', ' Expense update Failed ')->with('type', 'danger');
         }
     }
 
@@ -104,13 +120,13 @@ class ExpensesController extends Controller
     public function destroy($id)
     {
         //
-        $expenses = Expenses::findOrFail($id);
+        $expenses = Expense::findOrFail($id);
 
         $deleted = $expenses->delete();
         if ($deleted) {
-            return redirect()->back()->with('msg', 'Expenses deleted successfully')->with('type', 'success');
+            return redirect()->back()->with('msg', 'Expense deleted successfully')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'Expenses delete Failed')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'Expense delete Failed')->with('type', 'danger');
         }
     }
 }

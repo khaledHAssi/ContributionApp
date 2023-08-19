@@ -47,7 +47,6 @@
                             <div class="alert alert-danger alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                 <h5><i class="icon fas fa-ban"></i>validation error</h5>
-
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
@@ -72,8 +71,8 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="member_id">Investment id</label>
-                            <select name="investment_id"id="investment_id"
+                            <label for="investment_id">Investment id</label>
+                            <select name="investment_id" id="investment_id"
                                 class="form-control @error('investment_id') is-invalid @enderror">
                                 @foreach ($investments as $investment)
                                     <option value="{{ $investment->id }}">{{ $investment->name . ' - ' . $investment->name }}

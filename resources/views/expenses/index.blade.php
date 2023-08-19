@@ -34,6 +34,7 @@
                             <tr class="bg-dark text-white">
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Investment Name</th>
                                 <th>Details</th>
                                 <th>Total</th>
                                 <th>Actions</th>
@@ -44,6 +45,11 @@
                             <tr>
                                 <td>{{ $expense->id}}</td>
                                 <td>{{ $expense->name}}</td>
+                                @if ($expense->investment_id != 0 )
+                                <td>{{ $expense->investment->name}}</td>
+                                @else
+                                <td class="text-danger">There is no investment</td>
+                                @endif
                                 <td>{{ $expense->details}}</td>
                                 <td>{{ $expense->total_expenses }}</td>
 
