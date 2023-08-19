@@ -4,10 +4,10 @@
 
 @section('content')
 <div class="content py-4">
-    <h1 class="text-primary">Expenses </h1>
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
+                <h1 class="text-dark text-capitalize">all Expenses</h1>
 
                 <div class="card-body">
                     @if (session('msg'))
@@ -34,16 +34,17 @@
                             <tr class="bg-dark text-white">
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Details</th>
                                 <th>Total</th>
-
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($expenses as $expense )
                             <tr>
                                 <td>{{ $expense->id}}</td>
-
                                 <td>{{ $expense->name}}</td>
+                                <td>{{ $expense->details}}</td>
                                 <td>{{ $expense->total_expenses }}</td>
 
                                 <td class="d-flex">
@@ -61,12 +62,8 @@
                                         </button>
                                     </form>
                                 </td>
-
                                 @empty
-                                <td>
-                                <td colspan="6">No Data Found</td>
-                                </td>
-
+                                <td class="text-danger">No Data Found</td>
                                 @endforelse
                             </tr>
 

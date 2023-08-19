@@ -2,7 +2,7 @@
 
 @section('styles')
 
-<style>
+{{-- <style>
     .questions_wrapper div {
         position: relative;
     }
@@ -32,7 +32,7 @@
     .questions_wrapper div span:hover {
         background: #f00;
     }
-</style>
+</style> --}}
 
 @stop
 
@@ -64,6 +64,14 @@
                         <input id="name" name="name" type="text" placeholder="Name"
                             class="form-control @error('name') is-invalid @enderror " value="{{ old('name') }}" />
                         @error('name')
+                        <small class="invalid-feedback">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="details">Details</label>
+                        <input id="details" name="details" type="text" placeholder="Name"
+                            class="form-control @error('details') is-invalid @enderror " value="{{ old('details') }}" />
+                        @error('details')
                         <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>

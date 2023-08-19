@@ -38,25 +38,21 @@ class ExpensesController extends Controller
         //
         $validator =
             $request->validate([
-
                 'name' => 'required|string|min:3|max:20|',
+                'details' => 'required|string|min:20',
                 'total_expenses' => 'required|numeric',
-
             ]);
-
         $expenses = new Expenses();
         $expenses->name = $request->input('name');
+        $expenses->details = $request->input('details');
         $expenses->total_expenses = $request->input('total_expenses');
         $saved = $expenses->save();
-
-
         if ($saved) {
             return redirect()->route('expenses.index')->with('msg', 'Expenses Created Successfully')->with('type', 'success');
         } else {
             return redirect()->back()->with('msg', 'Expenses Create Failed')->with('type', 'danger');
         }
     }
-
     /**
      * Display the specified resource.
      */
@@ -64,7 +60,6 @@ class ExpensesController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -75,7 +70,6 @@ class ExpensesController extends Controller
 
         return view('expenses.edit', compact('expenses'));
     }
-
     /**
      * Update the specified resource in storage.
      */
@@ -86,12 +80,14 @@ class ExpensesController extends Controller
             $request->validate([
 
                 'name' => 'required|string|min:3|max:20|',
+                'details' => 'required|string|min:20',
                 'total_expenses' => 'required|numeric',
 
             ]);
 
         $expenses = Expenses::findOrFail($id);
         $expenses->name = $request->input('name');
+        $expenses->details = $request->input('details');
         $expenses->total_expenses = $request->input('total_expenses');
 
         $saved = $expenses->save();

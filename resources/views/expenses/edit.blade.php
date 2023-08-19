@@ -41,6 +41,15 @@ $title = "Edit Investment"
                         @enderror
                     </div>
                     <div class="mb-3">
+                        <label for="details">Details</label>
+                        <input id="details" name="details" type="text" placeholder="Name"
+                            class="form-control @error('details') is-invalid @enderror "
+                            value="{{ old('details', $expenses->details) }}" />
+                        @error('details')
+                        <small class="invalid-feedback">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
                         <label for="total_expenses">Total</label>
                         <input id="total_expenses" name="total_expenses" type="number" placeholder=""
                             class="form-control @error('total') is-invalid @enderror "

@@ -4,12 +4,10 @@
 
 @section('content')
 <div class="content py-4">
-    <h1 class="text-primary">Subscribes </h1>
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-
-                <div class="card-body">
+                    <h1 class="text-dark text-capitalize">Subscribes</h1>
                     @if (session('msg'))
                     <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
                     @endif
@@ -81,10 +79,9 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+                </div>
+                </div>
+                </div>
 @endsection
 
 @section('scripts')
