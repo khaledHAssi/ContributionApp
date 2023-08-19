@@ -10,13 +10,14 @@ class MemberController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function master(){
+    public function master()
+    {
         return view('master');
     }
-     public function index()
+    public function index()
     {
         $members = Member::all();
-        return response()->view('members.index',compact('members'));
+        return response()->view('members.index', compact('members'));
     }
 
     /**
@@ -54,12 +55,11 @@ class MemberController extends Controller
         $member->contributions = $request->input('contributions');
         $member->birthday = $request->input('birthday');
         $saved = $member->save();
-            if($saved){
-                return redirect()->route('members.index')->with('msg', 'Member Created Successfully')->with('type', 'success');
-            }else{
-                return redirect()->back()->with('msg', 'Member Create Failed')->with('type', 'danger');
-            }
-
+        if ($saved) {
+            return redirect()->route('members.index')->with('msg', 'Member Created Successfully')->with('type', 'success');
+        } else {
+            return redirect()->back()->with('msg', 'Member Create Failed')->with('type', 'danger');
+        }
     }
 
     /**
@@ -77,7 +77,7 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
         $members = Member::all();
-         return view('members.edit',compact('member','members'));
+        return view('members.edit', compact('member', 'members'));
     }
 
     /**
@@ -86,16 +86,16 @@ class MemberController extends Controller
     public function update(Request $request, $id)
     {
         $validator =
-        $request->validate([
-            'job' => 'nullable|string|min:3',
-            'name' => 'nullable|string|min:3|max:20|',
-            'phone' => 'nullable|numeric|digits:12|',
-            'identification_number' => 'nullable|numeric|digits:10|',
-            'monthly_number' => 'nullable|numeric',
-            'family_members_number' => 'nullable|numeric',
-            'contributions' => 'nullable|numeric',
-            'birthday' => 'nullable|date',
-        ]);
+            $request->validate([
+                'job' => 'nullable|string|min:3',
+                'name' => 'nullable|string|min:3|max:20|',
+                'phone' => 'nullable|numeric|digits:12|',
+                'identification_number' => 'nullable|numeric|digits:10|',
+                'monthly_number' => 'nullable|numeric',
+                'family_members_number' => 'nullable|numeric',
+                'contributions' => 'nullable|numeric',
+                'birthday' => 'nullable|date',
+            ]);
         $member = Member::findOrFail($id);
         $member->name = $request->input('name');
         $member->type = $request->input('type');
@@ -107,12 +107,11 @@ class MemberController extends Controller
         $member->contributions = $request->input('contributions');
         $member->birthday = $request->input('birthday');
         $saved = $member->save();
-            if($saved){
-                return redirect()->route('members.index')->with('msg', 'Member updated successfully')->with('type', 'success');
-            }else{
-                return redirect()->back()->with('msg', 'Member update Failed')->with('type', 'danger');
-            }
-
+        if ($saved) {
+            return redirect()->route('members.index')->with('msg', 'Member updated successfully')->with('type', 'success');
+        } else {
+            return redirect()->back()->with('msg', 'Member update Failed')->with('type', 'danger');
+        }
     }
 
     /**
@@ -122,9 +121,9 @@ class MemberController extends Controller
     {
         $member = Member::findOrFail($id);
         $deleted = $member->delete();
-        if($deleted){
+        if ($deleted) {
             return redirect()->back()->with('msg', 'Member deleted successfully')->with('type', 'success');
-        }else{
+        } else {
             return redirect()->back()->with('msg', 'Member delete Failed')->with('type', 'danger');
         }
     }

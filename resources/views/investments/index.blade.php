@@ -3,9 +3,18 @@
 
 
 @section('content')
+<<<<<<< HEAD
     <div class="content py-4">
         <div class="container-fluid">
             <div class="card">
+=======
+<div class="content py-4">
+    <h1 class="text-primary">Investments </h1>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+
+>>>>>>> 3517a5fe9acbe479fc847632a942333a0d64e60a
                 <div class="card-body">
 
                     <div class="card-body">
@@ -79,6 +88,53 @@
                             </tbody>
                         </table>
                     </div>
+<<<<<<< HEAD
+=======
+                    <table class="table table-bordered" id="users-table">
+                        <thead>
+                            <tr class="bg-dark text-white">
+                                <th>ID</th>
+                                <th>Subscribe Id </th>
+                                <th>Name</th>
+                                <th>Total</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($investments as $investment)
+                            <tr>
+                                <td>{{ $investment->id}}</td>
+                                <td>{{ $investment->subscribe_id}}</td>
+                                <td>{{ $investment->name}}</td>
+                                <td>{{ $investment->total }}</td>
+                                <td class="d-flex">
+                                    <a href="{{ route('investments.edit', $investment) }}"
+                                        class="mr-2 btn btn-primary btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form class="d-inline" action="{{ route('investments.destroy', $investment->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button onclick="return confirm('Are you sure!?')"
+                                            class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+
+                                @empty
+                                <td>
+                                <td colspan="6">No Data Found</td>
+                                </td>
+
+                                @endforelse
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+>>>>>>> 3517a5fe9acbe479fc847632a942333a0d64e60a
                 </div>
             </div>
         </div>
@@ -94,5 +150,10 @@
                 $('#users-table').DataTable().search(searchValue).draw();
             });
         });
+<<<<<<< HEAD
     </script>
 @endsection
+=======
+</script>
+@endsection
+>>>>>>> 3517a5fe9acbe479fc847632a942333a0d64e60a
