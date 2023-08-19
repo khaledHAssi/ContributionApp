@@ -16,7 +16,7 @@ class SubscribeController extends Controller
     public function index()
     {
         $subscriptions = Subscribe::with(['members', 'investments'])->get();
-        return response()->view('subscribes.index',compact('subscriptions'));
+        return response()->view('subscribes.index', compact('subscriptions'));
     }
 
     /**
@@ -43,23 +43,23 @@ class SubscribeController extends Controller
         $subscribe = new subscribe;
         $subscribe->date = $request->input('date');
         $subscribe->member_id = $request->input('member_id');
-        $subscribe->value =$request->input('value');
+        $subscribe->value = $request->input('value');
         $subscribe->investment_id = $request->input('investment_id');
         $investment = Investment::find($request->input('investment_id'));
         $investment->total += $subscribe->value;
         $investment->save();
-        $saved= $subscribe->save();
-        if($saved){
-        $subscribe->investment_id = $request->input('investment_id');
-        $subscribe->value = $request->input('value');
         $saved = $subscribe->save();
         if ($saved) {
-            return redirect()->route('subscribes.index')->with('msg', 'Subscribe Created Successfully')->with('type', 'success');
-        } else {
-            return redirect()->back()->with('msg', 'Subscribe Create Failed')->with('type', 'danger');
+            $subscribe->investment_id = $request->input('investment_id');
+            $subscribe->value = $request->input('value');
+            $saved = $subscribe->save();
+            if ($saved) {
+                return redirect()->route('subscribes.index')->with('msg', 'Subscribe Created Successfully')->with('type', 'success');
+            } else {
+                return redirect()->back()->with('msg', 'Subscribe Create Failed')->with('type', 'danger');
+            }
         }
     }
-}
 
     /**
      * Display the specified resource.
@@ -74,10 +74,13 @@ class SubscribeController extends Controller
      */
     public function edit($id)
     {
-        $subscribe = subscribe::findOrFail($id);
+        $subscribe = Subscribe::findOrFail($id);
         $members = DB::select('SELECT `id`, `name` , `type`FROM `members` ');
         $subscribe = $subscribe->load('members');
-        return view('subscribes.edit', compact('subscribe', 'members'));
+        $investments = DB::select('SELECT `id`, `name` , `total`  FROM `investments`');
+        $subscribe = $subscribe->load('investments');
+
+        return view('subscribes.edit', compact('subscribe', 'members', 'investments'));
     }
 
     /**

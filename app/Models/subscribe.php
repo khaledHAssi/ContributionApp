@@ -14,6 +14,6 @@ class Subscribe extends Model
     }
     public function investments()
     {
-        return $this->belongsTo(Investment::class , 'investment_id')->withDefault();
+        return $this->belongsTo(Investment::class, 'investment_id')->withDefault();
     }
 }
