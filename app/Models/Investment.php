@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Investment extends Model
 {
     use HasFactory;
-    public function subscribes()
+    public function subscribers()
     {
-        return $this->hasMany(Subscribe::class, 'investment_id')->withDefault();
+        return $this->hasMany(Subscribe::class ,  'investment_id');
     }
 }

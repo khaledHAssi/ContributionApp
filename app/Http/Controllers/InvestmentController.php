@@ -21,6 +21,7 @@ class InvestmentController extends Controller
     public function index()
     {
         $investments = Investment::all();
+        $investments = $investments->load('subscribers','subscribers.members');
         return response()->view('investments.index', compact('investments'));
     }
 
@@ -96,7 +97,7 @@ class InvestmentController extends Controller
 
         $investment = Investment::findOrFail($id);
         $investment->name = $request->input('name');
-        $investment->name = $request->input('total');
+        $investment->total = $request->input('total');
 
         $saved = $investment->save();
         if ($saved) {
