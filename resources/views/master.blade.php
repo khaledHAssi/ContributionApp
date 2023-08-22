@@ -194,6 +194,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('expense_fields.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-users "></i>
+                <p>
+                  {{ __('Expense Fields') }}
+                </p>
+              </a>
+            </li>
 
           </ul>
         </nav>

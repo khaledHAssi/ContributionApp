@@ -7,14 +7,14 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h1 class="text-dark text-capitalize">all Expenses</h1>
+                <h1 class="text-dark text-capitalize">all Expenses Fields</h1>
 
                 <div class="card-body">
                     @if (session('msg'))
                     <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
                     @endif
 
-                    <a href="{{ route('expenses.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
+                    <a href="{{ route('expense_fields.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
                         class="btn btn-success mr-5">{{ __('Add New') }}</a>
                     <div class="card-header bg-dark">
                         <div class="card-tools">
@@ -34,25 +34,23 @@
                             <tr class="bg-dark text-white">
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Details</th>
-                                <th>Total</th>
-                                <th>Actions</th>
+                                <th>Notes</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($expenses as $expense )
+                            @forelse ($expense_fields as $expense_field )
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $expense->name}}</td>
-                                <td>{{ $expense->details}}</td>
-                                <td>{{ $expense->total_expenses }}</td>
+                                <td>{{ $expense_field->name}}</td>
+                                <td>{{ $expense_field->notes}}</td>
 
                                 <td class="d-flex">
-                                    <a href="{{ route('expenses.edit', $expense) }}"
+                                    <a href="{{ route('expense_fields.edit', $expense_field->id) }}"
                                         class="mr-2 btn btn-primary btn-sm">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form class="d-inline" action="{{ route('expenses.destroy', $expense->id) }}"
+                                    <form class="d-inline"
+                                        action="{{ route('expense_fields.destroy', $expense_field->id) }}"
                                         method="POST">
                                         @csrf
                                         @method('delete')
