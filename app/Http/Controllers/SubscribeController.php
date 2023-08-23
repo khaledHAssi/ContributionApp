@@ -37,23 +37,22 @@ class SubscribeController extends Controller
         $validator =
             $request->validate([
                 'member_id' => 'required',
+                'investment_id' => 'required',
                 'value' => 'required|numeric',
                 'date' => 'required|',
             ]);
         $subscribe = new subscribe;
+        $subscribe->name = $request->input('name');
         $subscribe->date = $request->input('date');
         $subscribe->member_id = $request->input('member_id');
         $subscribe->value = $request->input('value');
         $subscribe->investment_id = $request->input('investment_id');
         $investment = Investment::find($request->input('investment_id'));
         $investment->total += $subscribe->value;
-        $investment->save();
         $saved = $subscribe->save();
         if ($saved) {
-            $subscribe->investment_id = $request->input('investment_id');
-            $subscribe->value = $request->input('value');
-            $saved = $subscribe->save();
-            if ($saved) {
+            $save =$investment->save();
+            if ($save) {
                 return redirect()->route('subscribes.index')->with('msg', 'Subscribe Created Successfully')->with('type', 'success');
             } else {
                 return redirect()->back()->with('msg', 'Subscribe Create Failed')->with('type', 'danger');
@@ -79,7 +78,6 @@ class SubscribeController extends Controller
         $subscribe = $subscribe->load('members');
         $investments = DB::select('SELECT `id`, `name` , `total`  FROM `investments`');
         $subscribe = $subscribe->load('investments');
-
         return view('subscribes.edit', compact('subscribe', 'members', 'investments'));
     }
 

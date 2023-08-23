@@ -46,8 +46,7 @@
                     @if ($errors->any())
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h5><i class="icon fas fa-ban"></i>validation error</h5>
-
+                        <h5><i class="icon fas fa-ban"></i>الأخطاء</h5>
                         <ul>
                             @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -58,44 +57,30 @@
                 @endif
                 <form action="{{ route('investments.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="mb-3">
-                        <label for="subscriber_id">Subscriber value & created @auth
-
+                    {{-- <div class="mb-3">
+                        <label for="subscriber_id">المشترك ووقت دفعه @auth
                         @endauth</label>
                         <select name="subscriber_id"id="subscriber_id"
                             class="form-control @error('subscriber_id') is-invalid @enderror">
                             @foreach ($subscribers as $member)
-                                <option value="{{ $member->id }}">{{ $member->value }} - {{ $member->created_at}}
+                                <option value="{{ $member->id }}">{{ $member->value }} ----
+                                    {{ \Carbon\Carbon::parse($member->created_at)->locale('ar')->diffForHumans() }}
                                 </option>
                             @endforeach
                         </select>
                         @error('subscriber_id')
                             <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="mb-3">
-                        <label for="name">Name</label>
-                        <input id="name" name="name" type="text" placeholder="Name"
+                        <label for="name">الإسم</label>
+                        <input id="name" name="name" type="text" placeholder="الإسم"
                             class="form-control @error('name') is-invalid @enderror " value="{{ old('name') }}" />
                         @error('name')
                         <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
-                    <div class="mb-3">
-                        <label for="total">Total</label>
-                        <input id="total" name="total" type="number" placeholder=""
-                            class="form-control @error('total') is-invalid @enderror " value="{{ old('name') }}" />
-                        @error('total')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <button class="btn btn-success px-5"><i class="fas fa-save"></i> Add</button>
-
-
-
-
-
+                    <button class="btn btn-success px-3">إضافة<i class="mr-2 fas fa-save"></i></button>
                 </form>
             </div>
         </div>

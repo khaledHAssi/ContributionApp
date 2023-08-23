@@ -39,8 +39,7 @@ class MemberController extends Controller
                 'name' => 'required|string|min:3|max:20|',
                 'phone' => 'required|numeric|digits:12|',
                 'identification_number' => 'required|numeric|digits:10|',
-                'monthly_number' => 'required|numeric',
-                'family_members_number' => 'required|numeric',
+                'salary' => 'required|numeric',
                 'contributions' => 'required|numeric',
                 'birthday' => 'required|date',
             ]);
@@ -50,8 +49,7 @@ class MemberController extends Controller
         $member->job = $request->input('job');
         $member->phone = $request->input('phone');
         $member->identification_number = $request->input('identification_number');
-        $member->monthly_number = $request->input('monthly_number');
-        $member->family_members_number = $request->input('family_members_number');
+        $member->salary = $request->input('salary');
         $member->contributions = $request->input('contributions');
         $member->birthday = $request->input('birthday');
         $saved = $member->save();
@@ -91,8 +89,7 @@ class MemberController extends Controller
                 'name' => 'nullable|string|min:3|max:20|',
                 'phone' => 'nullable|numeric|digits:12|',
                 'identification_number' => 'nullable|numeric|digits:10|',
-                'monthly_number' => 'nullable|numeric',
-                'family_members_number' => 'nullable|numeric',
+                'salary' => 'nullable|numeric',
                 'contributions' => 'nullable|numeric',
                 'birthday' => 'nullable|date',
             ]);
@@ -102,8 +99,7 @@ class MemberController extends Controller
         $member->job = $request->input('job');
         $member->phone = $request->input('phone');
         $member->identification_number = $request->input('identification_number');
-        $member->monthly_number = $request->input('monthly_number');
-        $member->family_members_number = $request->input('family_members_number');
+        $member->salary = $request->input('salary');
         $member->contributions = $request->input('contributions');
         $member->birthday = $request->input('birthday');
         $saved = $member->save();

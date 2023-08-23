@@ -1,7 +1,7 @@
 @extends('master')
 
 @php
-$title = "Edit Investment"
+$title = "تعديل الصندوق"
 
 @endphp
 
@@ -21,7 +21,7 @@ $title = "Edit Investment"
                         @if ($errors->any())
                         <div class="alert alert-danger alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h5><i class="icon fas fa-ban"></i>validation error</h5>
+                            <h5><i class="icon fas fa-ban"></i>الأخطاء</h5>
 
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -33,7 +33,7 @@ $title = "Edit Investment"
                     @endif
 
                     <div class="mb-3">
-                        <label for="name">Name</label>
+                        <label for="name">الإسم</label>
                         <input id="name" name="name" type="text" placeholder="Name"
                             class="form-control @error('name') is-invalid @enderror "
                             value="{{ old('name', $investment->name) }}" />
@@ -41,21 +41,12 @@ $title = "Edit Investment"
                         <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
-                    <div class="mb-3">
-                        <label for="total">Total</label>
-                        <input id="total" name="total" type="number" placeholder=""
-                            class="form-control @error('total') is-invalid @enderror "
-                            value="{{ old('name', $investment->total) }}" />
-                        @error('total')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <button class="btn btn-success px-5"><i class="fas fa-save"></i> Edit</button>
+                    <button class="btn btn-success px-5">تعديل<i class="mr-2 fas fa-save"></i></button>
 
                 </form>
             </div>
         </div>
+    </div>
     </div>
 </div>
 

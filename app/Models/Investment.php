@@ -12,4 +12,8 @@ class Investment extends Model
     {
         return $this->hasMany(Subscribe::class ,  'investment_id');
     }
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class ,  'investment_id');
+    }
 }

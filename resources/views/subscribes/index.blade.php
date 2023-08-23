@@ -7,18 +7,18 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                    <h1 class="text-dark text-capitalize">Subscribes</h1>
+                    <h1 class="text-dark text-capitalize">الإشتراكات</h1>
                     @if (session('msg'))
                     <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
                     @endif
 
                     <a href="{{ route('subscribes.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
-                        class="btn btn-success mr-5">{{ __('Add New') }}</a>
+                        class="btn btn-success">{{ __('الإسم') }}</a>
                     <div class="card-header bg-dark">
                         <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
+                            <div class="input-group bg-light input-group-sm" style="width: 150px;">
                                 <input id="user-search" type="text" class="form-control float-right"
-                                    placeholder="Search subscribes">
+                                    placeholder="إبحث عن أعضاء">
                                 <div class="input-group-append">
                                     <button id="search-button" class="btn btn-default">
                                         <i class="fas fa-search"></i>
@@ -30,12 +30,12 @@
                     <table class="table table-bordered" id="users-table">
                         <thead>
                             <tr class="bg-dark text-white">
-                                <th>ID</th>
-                                <th>Member</th>
-                                <th>Investments</th>
-                                <th>Date</th>
-                                <th>Value</th>
-                                <th>Actions</th>
+                                <th>#</th>
+                                <th>العضو</th>
+                                <th>الصندوق</th>
+                                <th>التاريخ</th>
+                                <th>قيمة الإشتراك</th>
+                                <th>عمليات</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,7 +57,7 @@
                                 <td>{{ $user->date }}</td>
                                 <td>{{ $user->value }}</td>
                                 <td class="d-flex">
-                                    <a href="{{ route('subscribes.edit', $user) }}" class="mr-2 btn btn-primary btn-sm">
+                                    <a href="{{ route('subscribes.edit', $user) }}" class="ml-2 btn btn-primary btn-sm">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <form class="d-inline" action="{{ route('subscribes.destroy', $user->id) }}"

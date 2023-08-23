@@ -31,8 +31,8 @@ class InvestmentController extends Controller
      */
     public function create()
     {
-        $subscribers = Subscribe::all();
-        return view('investments.create', compact('subscribers'));
+        // $subscribers = Subscribe::all();
+        return view('investments.create');
     }
 
     /**
@@ -43,15 +43,11 @@ class InvestmentController extends Controller
         //
         $validator =
             $request->validate([
-
                 'name' => 'required|string|min:3|max:20|',
-                'total' => 'required|numeric',
-
             ]);
 
         $investment = new Investment();
         $investment->name = $request->input('name');
-        $investment->total = $request->input('total');
         $saved = $investment->save();
 
 
@@ -89,16 +85,11 @@ class InvestmentController extends Controller
         //
         $validator =
             $request->validate([
-
                 'name' => 'required|string|min:3|max:20|',
-                'total' => 'required|numeric',
-
             ]);
 
         $investment = Investment::findOrFail($id);
         $investment->name = $request->input('name');
-        $investment->total = $request->input('total');
-
         $saved = $investment->save();
         if ($saved) {
             return redirect()->route('investments.index')->with('msg', 'Investment updated Successfully')->with('type', 'success');
