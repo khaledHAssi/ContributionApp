@@ -17,8 +17,8 @@ return new class extends Migration
             $table->enum('type', ['subscriber', 'contributor'])->default('subscriber');
             $table->string('phone', 12);
             $table->integer('identification_number');
-            $table->integer('monthly_number');
-            $table->integer('family_members_number');
+            $table->integer('salary');
+            // $table->integer('family_members_number');
             $table->integer('contributions');
             $table->date('birthday');
             $table->string('job');

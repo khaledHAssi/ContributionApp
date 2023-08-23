@@ -1,13 +1,13 @@
 @extends('master')
 
 @php
-$title = "Edit Users"
+$title = "تعديل المستخدمين"
 @endphp
 
 @section('title', $title)
 
 @section('content')
-<div class="content">
+<div class="content " >
     <div class="container-fluid">
         <div class="card mt-4">
             <div class="card-body">
@@ -19,8 +19,7 @@ $title = "Edit Users"
                         @if ($errors->any())
                         <div class="alert alert-danger alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h5><i class="icon fas fa-ban"></i>validation error</h5>
-
+                            <h5><i class="icon fas fa-ban"></i>الأخطاء</h5>
                             <ul>
                                 @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -31,7 +30,7 @@ $title = "Edit Users"
                     @endif
 
                     <div class="mb-3">
-                        <label for="name">Name</label>
+                        <label for="name">الإسم</label>
                         <input id="name" name="name" type="text" placeholder="Name"
                             class="form-control @error('name') is-invalid @enderror "
                             value="{{ old('name', $member->name) }}" />
@@ -40,7 +39,7 @@ $title = "Edit Users"
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="type">Type</label>
+                        <label for="type">النوع</label>
                         <select name="type" class="form-control @error('type') is-invalid @enderror">
                             <option value="subscriber" @if(old('type', $member->type) === 'subscriber') selected
                                 @endif>subscriber</option>
@@ -53,7 +52,7 @@ $title = "Edit Users"
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="job">job</label>
+                        <label for="job">المهنة</label>
                         <input id="job" name="job" type="text" placeholder="User Name"
                             class="form-control @error('job') is-invalid @enderror "
                             value="{{ old('job', $member->job) }}" />
@@ -62,7 +61,7 @@ $title = "Edit Users"
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="phone">phone</label>
+                        <label for="phone">رقم الجوال</label>
                         <input id="phone" name="phone" type="number" placeholder="Phone"
                             class="form-control @error('phone') is-invalid @enderror "
                             value="{{ old('phone', $member->phone) }}" />
@@ -71,7 +70,7 @@ $title = "Edit Users"
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="identification_number">identification_number</label>
+                        <label for="identification_number">رقم الهوية</label>
                         <input id="identification_number" name="identification_number" type="number"
                             placeholder="identification_number"
                             class="form-control @error('identification_number') is-invalid @enderror "
@@ -81,15 +80,15 @@ $title = "Edit Users"
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="monthly_number">monthly_number</label>
-                        <input id="monthly_number" name="monthly_number" type="number" placeholder="monthly_number"
-                            class="form-control @error('monthly_number') is-invalid @enderror "
-                            value="{{ old('monthly_number', $member->monthly_number) }}" />
-                        @error('monthly_number')
+                        <label for="salary">الراتب</label>
+                        <input id="salary" name="salary" type="number" placeholder="salary"
+                            class="form-control @error('salary') is-invalid @enderror "
+                            value="{{ old('salary', $member->salary) }}" />
+                        @error('salary')
                         <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="family_members_number">family_members_number</label>
                         <input id="family_members_number" name="family_members_number" type="number"
                             placeholder="family_members_number"
@@ -98,9 +97,9 @@ $title = "Edit Users"
                         @error('family_members_number')
                         <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="mb-3">
-                        <label for="contributions">contributions</label>
+                        <label for="contributions">المساهمة</label>
                         <input id="contributions" name="contributions" type="number" placeholder="contributions"
                             class="form-control @error('contributions') is-invalid @enderror "
                             value="{{ old('contributions', $member->contributions) }}" />
@@ -109,7 +108,7 @@ $title = "Edit Users"
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="birthday">birthday</label>
+                        <label for="birthday">تاريخ الميلاد</label>
                         <input id="birthday" name="birthday" type="date" placeholder="birthday"
                             class="form-control @error('birthday') is-invalid @enderror "
                             value="{{ old('birthday', $member->birthday) }}" />
@@ -117,11 +116,9 @@ $title = "Edit Users"
                         <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
-
-
-                    <button class="btn btn-success px-5"><i class="fas fa-save"></i> Edit</button>
-
+                    <button class="btn btn-success px-5">تعديل<i class="fas fa-save"></i></button>
                 </form>
+            </div>
             </div>
         </div>
     </div>

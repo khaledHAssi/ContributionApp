@@ -1,7 +1,7 @@
 @extends('master')
 
 @php
-    $title = 'Edit Investment';
+    $title = 'تعديل الصرف';
 
 @endphp
 
@@ -20,8 +20,7 @@
                             @if ($errors->any())
                                 <div class="alert alert-danger alert-dismissible">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <h5><i class="icon fas fa-ban"></i>validation error</h5>
-
+                                    <h5><i class="icon fas fa-ban"></i>الأخطاء</h5>
                                     <ul>
                                         @foreach ($errors->all() as $error)
                                             <li>{{ $error }}</li>
@@ -32,8 +31,8 @@
                         @endif
 
                         <div class="mb-3">
-                            <label for="name">Name</label>
-                            <input id="name" name="name" type="text" placeholder="Name"
+                            <label for="name">الإسم</label>
+                            <input id="name" name="name" type="text" placeholder="الإسم"
                                 class="form-control @error('name') is-invalid @enderror "
                                 value="{{ old('name', $expenses->name) }}" />
                             @error('name')
@@ -41,7 +40,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="investment_id">Investment id</label>
+                            <label for="investment_id">الصندوق</label>
                             <select name="investment_id"id="investment_id"
                                 class="form-control @error('investment_id') is-invalid @enderror">
                                 @foreach ($investments as $investment)
@@ -55,8 +54,8 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="details">Details</label>
-                            <input id="details" name="details" type="text" placeholder="Name"
+                            <label for="details">التفاصيل</label>
+                            <input id="details" name="details" type="text" placeholder="التفاصيل"
                                 class="form-control @error('details') is-invalid @enderror "
                                 value="{{ old('details', $expenses->details) }}" />
                             @error('details')
@@ -64,8 +63,8 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="total_expenses">Total</label>
-                            <input id="total_expenses" name="total_expenses" type="number" placeholder=""
+                            <label for="total_expenses">المبلغ</label>
+                            <input id="total_expenses" name="total_expenses" type="number" placeholder="المبلغ"
                                 class="form-control @error('total') is-invalid @enderror "
                                 value="{{ old('name', $expenses->total_expenses) }}" />
                             @error('total')
@@ -73,7 +72,7 @@
                             @enderror
                         </div>
 
-                        <button class="btn btn-success px-5"><i class="fas fa-save"></i> Edit</button>
+                        <button class="btn btn-success px-5">تعديل<i class="fas fa-save"></i></button>
 
                     </form>
                 </div>

@@ -3,42 +3,40 @@
 
 
 @section('content')
-<div class="content py-4">
+<div class="content py-4 " >
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                    <h1 class="text-dark text-capitalize">all Members</h1>
+                    <h1 class="text-dark text-capitalize ">كل الأعضاء</h1>
                     @if (session('msg'))
                     <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
                     @endif
-
                     <a href="{{ route('members.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
-                        class="btn btn-success mr-5">{{ __('Add New') }}</a>
-                    <div class="card-header bg-dark">
-                        <div class="card-tools">
+                        class="btn btn-success">{{ __('اضافة عضو') }}</a>
+                    <div class="card-header bg-dark ">
+                        <div class="card-tools bg-light ">
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input id="user-search" type="text" class="form-control float-right"
-                                    placeholder="Search members">
-                                <div class="input-group-append">
-                                    <button id="search-button" class="btn btn-default">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
+                                    placeholder="ابحث عن أعضاء">
+                                    <div class="input-group-append ">
+                                        <button id="search-button" class="btn btn-default">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
                             </div>
                         </div>
                     </div>
                     <table class="table table-bordered" id="users-table">
                         <thead>
                             <tr class="bg-dark text-white">
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Job</th>
-                                <th>identification_number</th>
-                                <th>Monthly number</th>
-                                <th>Family members number</th>
-                                <th>phone</th>
-                                <th>Contributions</th>
-                                <th>Actions</th>
+                                <th>#</th>
+                                <th>الاسم</th>
+                                <th>الوظيفة</th>
+                                <th>رقم الهوية</th>
+                                <th>الراتب</th>
+                                <th>رقم الجوال</th>
+                                <th>المساهمة</th>
+                                <th>العمليات</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,12 +51,11 @@
                                 </td>
                                 <td>{{ $user->job }}</td>
                                 <td>{{ $user->identification_number }}</td>
-                                <td>{{ $user->monthly_number }}</td>
-                                <td>{{ $user->family_members_number }}</td>
+                                <td>{{ $user->salary }}</td>
                                 <td>{{ $user->phone }}</td>
                                 <td>{{ $user->contributions }}</td>
                                 <td class="d-flex">
-                                    <a href="{{ route('members.edit', $user) }}" class="mr-2 btn btn-primary btn-sm">
+                                    <a href="{{ route('members.edit', $user) }}" class="ml-2 btn btn-primary btn-sm">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <form class="d-inline" action="{{ route('members.destroy', $user->id) }}"

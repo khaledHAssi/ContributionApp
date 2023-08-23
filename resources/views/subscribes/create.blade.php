@@ -46,7 +46,7 @@
                         @if ($errors->any())
                             <div class="alert alert-danger alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <h5><i class="icon fas fa-ban"></i>validation error</h5>
+                                <h5><i class="icon fas fa-ban"></i>الأخطاء</h5>
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
@@ -58,7 +58,7 @@
                     <form action="{{ route('subscribes.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="member_id">Member id</label>
+                            <label for="member_id">العضو</label>
                             <select name="member_id"id="member_id"
                                 class="form-control @error('member_id') is-invalid @enderror">
                                 @foreach ($members as $member)
@@ -71,7 +71,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="investment_id">Investment id</label>
+                            <label for="investment_id">الصندوق</label>
                             <select name="investment_id" id="investment_id"
                                 class="form-control @error('investment_id') is-invalid @enderror">
                                 @foreach ($investments as $investment)
@@ -84,22 +84,30 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="value">value</label>
-                            <input id="value" name="value" type="number" placeholder="value"
+                            <label for="name">الإسم</label>
+                            <input id="name" name="name" type="text" placeholder="الإسم"
+                                class="form-control @error('name') is-invalid @enderror " name="{{ old('name') }}" />
+                            @error('name')
+                                <small class="invalid-feedback">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="value">القيمة</label>
+                            <input id="value" name="value" type="number" placeholder="القيمة"
                                 class="form-control @error('value') is-invalid @enderror " value="{{ old('value') }}" />
                             @error('value')
                                 <small class="invalid-feedback">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="date">date</label>
-                            <input id="date" name="date" type="date" placeholder="date"
+                            <label for="date">التاريخ</label>
+                            <input id="date" name="date" type="date" placeholder="التاريخ"
                                 class="form-control @error('date') is-invalid @enderror " value="{{ old('date') }}" />
                             @error('date')
                                 <small class="invalid-feedback">{{ $message }}</small>
                             @enderror
                         </div>
-                        <button class="btn btn-success px-5"><i class="fas fa-save"></i> Add</button>
+                        <button class="btn btn-success px-5"><i class="fas fa-save"></i> إضافة</button>
 
 
 
