@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expense;
+use App\Models\Expense_field;
 use App\Models\Investment;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class ExpensesController extends Controller
     {
         //
         $expenses = Expense::all();
-        $expenses = $expenses->load('investment');
+        $expenses = $expenses->load('investment','expense_field');
         return response()->view('expenses.index', compact('expenses'));
     }
 
@@ -33,7 +34,8 @@ class ExpensesController extends Controller
     public function create()
     {
         $investments = Investment::all();
-        return view('expenses.create', compact('investments'));
+        $expense_fields =Expense_field::all() ;
+        return view('expenses.create', compact('investments','expense_fields'));
     }
 
     /**
@@ -53,6 +55,7 @@ class ExpensesController extends Controller
         $expenses->name = $request->input('name');
         $expenses->total_expenses = $request->input('total_expenses');
         $expenses->details = $request->input('details');
+        $expenses->expenseField_id = $request->input('expenseField_id');
         // investment total ----------------------------------------------------------------
         $expenses->investment_id = $request->input('investment_id');
         $investment = Investment::find($request->input('investment_id'));
@@ -84,8 +87,9 @@ class ExpensesController extends Controller
         //
         $expenses = Expense::find($id);
         $investments = DB::select('SELECT `id`, `name` , `total`FROM `investments` ');
-        $expenses = $expenses->load('investment');
-        return view('expenses.edit', compact('expenses', 'investments'));
+        $expense_fields = DB::select('SELECT `id`, `name` ,`created_at` FROM `expense_fields` ');
+        $expenses = $expenses->load('investment','expense_field');
+        return view('expenses.edit', compact('expenses', 'investments','expense_fields'));
     }
     /**
      * Update the specified resource in storage.
@@ -98,6 +102,7 @@ class ExpensesController extends Controller
                 'name' => 'required|string|min:3|max:20|',
                 'details' => 'required|string|min:20',
                 'total_expenses' => 'required|numeric',
+                'expenseField_id' => 'required|',
             ]);
         $investment = Investment::find($request->input('investment_id'));
         $expenses = Expense::findOrFail($id);
@@ -105,7 +110,7 @@ class ExpensesController extends Controller
         $expenses->details = $request->input('details');
         $expenses->total_expenses = $request->input('total_expenses');
         $expenses->investment_id = $request->input('investment_id');
-
+        $expenses->expenseField_id = $request->input('expenseField_id');
         $saved = $expenses->save();
         if ($saved) {
             return redirect()->route('expenses.index')->with('msg', 'Expense updated Successfully')->with('type', 'success');

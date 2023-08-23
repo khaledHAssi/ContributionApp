@@ -12,4 +12,8 @@ class Expense extends Model
     {
         return $this->belongsTo(Investment::class , 'investment_id')->withDefault();
     }
+    public function expense_field()
+    {
+        return $this->belongsTo(Expense_field::class , 'expenseField_id')->withDefault();
+    }
 }

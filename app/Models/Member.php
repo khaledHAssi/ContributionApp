@@ -12,4 +12,8 @@ class Member extends Model
     {
         return $this->hasMany(subscribe::class , 'member_id');
     }
+    public function supervisor()
+    {
+        return $this->belongsTo(SuperVisor::class , 'supervisor_id');
+    }
 }

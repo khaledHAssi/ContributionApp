@@ -16,4 +16,5 @@ class Investment extends Model
     {
         return $this->hasMany(Expense::class ,  'investment_id');
     }
+
 }

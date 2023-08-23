@@ -1,7 +1,7 @@
 @extends('master')
 
 @php
-$title = "Edit Investment"
+$title = "تعديل وجه الصرف"
 
 @endphp
 
@@ -21,8 +21,7 @@ $title = "Edit Investment"
                         @if ($errors->any())
                         <div class="alert alert-danger alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h5><i class="icon fas fa-ban"></i>validation error</h5>
-
+                            <h5><i class="icon fas fa-ban"></i>الأخطاء</h5>
                             <ul>
                                 @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -32,23 +31,23 @@ $title = "Edit Investment"
                     </div>
                     @endif
                     <div class="mb-3">
-                        <label for="name">Name</label>
-                        <input id="name" name="name" type="text" placeholder="Name"
+                        <label for="name">الإسم</label>
+                        <input id="name" name="name" type="text" placeholder="الإسم"
                             class="form-control @error('name') is-invalid @enderror " value="{{ old('name') }}" />
                         @error('name')
                         <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="notes">Notes</label>
-                        <input id="notes" name="notes" type="text" placeholder="Notes"
+                        <label for="notes">الملاحظات</label>
+                        <input id="notes" name="notes" type="text" placeholder="الملاحظات"
                             class="form-control @error('notes') is-invalid @enderror " value="{{ old('name') }}" />
                         @error('notes')
                         <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
 
-                    <button class="btn btn-success px-5"><i class="fas fa-save"></i> Edit</button>
+                    <button class="btn btn-success px-5">تعديل<i class="fas fa-save"></i></button>
 
                 </form>
             </div>

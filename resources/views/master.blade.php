@@ -122,7 +122,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <a href="{{ route('expense_fields.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-users "></i>
                 <p>
-                  {{ __('Expense Fields') }}
+                  {{ __('أوجه الصرف') }}
                 </p>
               </a>
             </li>

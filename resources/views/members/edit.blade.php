@@ -28,7 +28,6 @@ $title = "تعديل المستخدمين"
                         </div>
                     </div>
                     @endif
-
                     <div class="mb-3">
                         <label for="name">الإسم</label>
                         <input id="name" name="name" type="text" placeholder="Name"
@@ -36,6 +35,20 @@ $title = "تعديل المستخدمين"
                             value="{{ old('name', $member->name) }}" />
                         @error('name')
                         <small class="invalid-feedback">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="supervisor_id">المشرف</label>
+                        <select name="supervisor_id"id="supervisor_id"
+                            class="form-control @error('supervisor_id') is-invalid @enderror">
+                            @foreach ($supervisors as $supervisor)
+                                <option @selected($member->supervisor_id == $supervisor->id) value="{{$supervisor->id}}">
+                                    {{$supervisor->name . '-' . $supervisor->email}}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('supervisor_id')
+                            <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
