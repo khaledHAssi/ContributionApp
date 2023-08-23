@@ -2,37 +2,6 @@
 
 @section('styles')
 
-{{-- <style>
-    .questions_wrapper div {
-        position: relative;
-    }
-
-    .questions_wrapper div span {
-        width: 20px;
-        height: 20px;
-        background: #333;
-        display: flex;
-        justify-content: center;
-        /* align-items: center; */
-        color: #fff;
-        font-size: 36px;
-        line-height: 14px;
-        border-radius: 50px;
-        cursor: pointer;
-        position: absolute;
-        right: 8px;
-        top: 8px;
-        display: none;
-    }
-
-    .questions_wrapper div:hover span {
-        display: flex;
-    }
-
-    .questions_wrapper div span:hover {
-        background: #f00;
-    }
-</style> --}}
 
 @stop
 
@@ -46,8 +15,7 @@
                     @if ($errors->any())
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h5><i class="icon fas fa-ban"></i>validation error</h5>
-
+                        <h5><i class="icon fas fa-ban"></i>الأخطاء</h5>
                         <ul>
                             @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -60,24 +28,22 @@
                     @csrf
 
                     <div class="mb-3">
-                        <label for="name">Name</label>
-                        <input id="name" name="name" type="text" placeholder="Name"
+                        <label for="name">الإسم</label>
+                        <input id="name" name="name" type="text" placeholder="الإسم"
                             class="form-control @error('name') is-invalid @enderror " value="{{ old('name') }}" />
                         @error('name')
                         <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="notes">Notes</label>
-                        <input id="notes" name="notes" type="text" placeholder="Notes"
+                        <label for="notes">الملاحظات</label>
+                        <input id="notes" name="notes" type="text" placeholder="الملاحظات"
                             class="form-control @error('notes') is-invalid @enderror " value="{{ old('name') }}" />
                         @error('notes')
                         <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
-
-
-                    <button class="btn btn-success px-5"><i class="fas fa-save"></i> Add</button>
+                    <button class="btn btn-success px-5">إضافة<i class="fas fa-save"></i></button>
 
 
 

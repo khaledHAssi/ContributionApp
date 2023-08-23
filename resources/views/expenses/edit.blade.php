@@ -54,6 +54,20 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="expenseField_id">وجه الصرف</label>
+                            <select name="expenseField_id" id="expenseField_id"
+                                class="form-control @error('expenseField_id') is-invalid @enderror">
+                                @foreach ($expense_fields as $expense_field)
+                                    <option @selected($expenses->expenseField_id == $expenses->id) value="{{ $expense_field->id }}">
+                                        {{ $expense_field->name . ' -- تم إنشاؤه في  : ' . $expense_field->created_at }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('expenseField_id')
+                                <small class="invalid-feedback">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label for="details">التفاصيل</label>
                             <input id="details" name="details" type="text" placeholder="التفاصيل"
                                 class="form-control @error('details') is-invalid @enderror "

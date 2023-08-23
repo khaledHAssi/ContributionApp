@@ -35,6 +35,7 @@
                                 <th>#</th>
                                 <th>الإسم</th>
                                 <th>الصندوق</th>
+                                <th>أوجه الصرف</th>
                                 <th>التفاصيل</th>
                                 <th>المبلغ</th>
                                 <th>العمليات</th>
@@ -49,6 +50,11 @@
                                 <td>{{ $expense->investment->name}}</td>
                                 @else
                                 <td class="text-danger">لم يتم الدفع من صندوق</td>
+                                @endif
+                                @if ($expense->expenseField_id)
+                                <td>{{ $expense->expense_field->name}}</td>
+                                @else
+                                <td class="text-danger">لا يوجد وجه صرف</td>
                                 @endif
                                 <td>{{ $expense->details}}</td>
                                 <td>{{ $expense->total_expenses }}</td>

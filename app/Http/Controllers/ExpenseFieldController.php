@@ -40,17 +40,17 @@ class ExpenseFieldController extends Controller
 
         $validator =
             $request->validate([
-                'name' => 'required|string|min:3|max:20|',
-                'notes' => 'required|string|min:20',
+                'name' => 'required|string|',
+                'notes' => 'nullable|string|',
             ]);
         $expense_fields = new Expense_field();
         $expense_fields->name = $request->input('name');
         $expense_fields->notes = $request->input('notes');
         $saved = $expense_fields->save();
         if ($saved) {
-            return redirect()->route('expense_fields.index')->with('msg', 'Expense Fields Created Successfully')->with('type', 'success');
+            return redirect()->route('expense_fields.index')->with('msg', 'تم التعديل بنجاح')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'Expense Fields Create Failed')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'يوجد خطأ في البيانات المدخلة')->with('type', 'danger');
         }
     }
 
@@ -81,10 +81,8 @@ class ExpenseFieldController extends Controller
         //
         $validator =
             $request->validate([
-
-                'name' => 'required|string|min:3|max:20|',
-                'notes' => 'required|string|min:20',
-
+                'name' => 'required|string|min:3',
+                'notes' => 'nullable|string|',
             ]);
 
         $expense_fields = Expense_field::findOrFail($id);
@@ -93,9 +91,9 @@ class ExpenseFieldController extends Controller
         $saved = $expense_fields->save();
 
         if ($saved) {
-            return redirect()->route('expense_fields.index')->with('msg', 'Expenses Fields updated Successfully')->with('type', 'success');
+            return redirect()->route('expense_fields.index')->with('msg', 'تم التعديل بنجاح')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', ' Expenses Fields update Failed ')->with('type', 'danger');
+            return redirect()->back()->with('msg', ' يوجد خطأ في البيانات المدخلة')->with('type', 'danger');
         }
     }
 

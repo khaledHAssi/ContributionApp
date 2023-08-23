@@ -31,6 +31,7 @@
                             <tr class="bg-dark text-white">
                                 <th>#</th>
                                 <th>الاسم</th>
+                                <th>المشرف</th>
                                 <th>الوظيفة</th>
                                 <th>رقم الهوية</th>
                                 <th>الراتب</th>
@@ -49,6 +50,12 @@
                                     <span class="text-danger">{{ $user->type }}</span>
                                     @endif
                                 </td>
+                                    @if ($user->supervisor)
+                                    <td>
+                                        {{ $user->supervisor->name . '-' . $user->supervisor->phone}}</td>
+                                    @else
+                                        <td class="text-danger">لا يوجد مشرف</td>
+                                    @endif
                                 <td>{{ $user->job }}</td>
                                 <td>{{ $user->identification_number }}</td>
                                 <td>{{ $user->salary }}</td>

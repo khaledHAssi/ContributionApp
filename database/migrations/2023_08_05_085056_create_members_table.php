@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('type', ['subscriber', 'contributor'])->default('subscriber');
+            $table->enum('type', ['subscriber', 'contributor'])->default('contributor');
             $table->string('phone', 12);
             $table->integer('identification_number');
             $table->integer('salary');

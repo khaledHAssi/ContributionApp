@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\Supervisor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
@@ -17,6 +19,7 @@ class MemberController extends Controller
     public function index()
     {
         $members = Member::all();
+        $members = $members->load('supervisor');
         return response()->view('members.index', compact('members'));
     }
 
@@ -25,7 +28,8 @@ class MemberController extends Controller
      */
     public function create()
     {
-        return view('members.create');
+        $supervisors = Supervisor::all();
+        return view('members.create',compact('supervisors'));
     }
 
     /**
@@ -37,6 +41,7 @@ class MemberController extends Controller
             $request->validate([
                 'job' => 'required|string|min:3',
                 'name' => 'required|string|min:3|max:20|',
+                'supervisor_id' => 'required|',
                 'phone' => 'required|numeric|digits:12|',
                 'identification_number' => 'required|numeric|digits:10|',
                 'salary' => 'required|numeric',
@@ -45,6 +50,7 @@ class MemberController extends Controller
             ]);
         $member = new Member;
         $member->name = $request->input('name');
+        $member->supervisor_id = $request->input('supervisor_id');
         $member->type = $request->input('type');
         $member->job = $request->input('job');
         $member->phone = $request->input('phone');
@@ -75,7 +81,9 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
         $members = Member::all();
-        return view('members.edit', compact('member', 'members'));
+        $members = $members->load('supervisor');
+        $supervisors = DB::select('SELECT `id`, `name` , `email` FROM `supervisors`');
+        return view('members.edit', compact('member', 'members','supervisors'));
     }
 
     /**
@@ -87,6 +95,7 @@ class MemberController extends Controller
             $request->validate([
                 'job' => 'nullable|string|min:3',
                 'name' => 'nullable|string|min:3|max:20|',
+                'supervisor_id' => 'required|',
                 'phone' => 'nullable|numeric|digits:12|',
                 'identification_number' => 'nullable|numeric|digits:10|',
                 'salary' => 'nullable|numeric',
@@ -95,6 +104,7 @@ class MemberController extends Controller
             ]);
         $member = Member::findOrFail($id);
         $member->name = $request->input('name');
+        $member->supervisor_id = $request->input('supervisor_id');
         $member->type = $request->input('type');
         $member->job = $request->input('job');
         $member->phone = $request->input('phone');

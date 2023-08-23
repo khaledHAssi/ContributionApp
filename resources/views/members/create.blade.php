@@ -32,6 +32,19 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="supervisor_id">المشرف</label>
+                            <select name="supervisor_id"id="supervisor_id"
+                                class="form-control @error('supervisor_id') is-invalid @enderror">
+                                @foreach ($supervisors as $member)
+                                    <option value="{{ $member->id }}">{{ $member->name . ' - ' . $member->email }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('supervisor_id')
+                                <small class="invalid-feedback">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label for="type">النوع</label>
                             <select name="type" class="form-control @error('type') is-invalid @enderror">
                                 <option @selected(old('type') == 'subscriber') value="subscriber">subscriber</option>

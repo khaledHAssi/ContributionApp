@@ -46,9 +46,9 @@
             <div class="card mt-4">
                 <div class="card-body">
                     <div class="card-body">
-                    <h1>{{ $title }}</h1>
+                        <h1>{{ $title }}</h1>
                         @if (session('msg'))
-                        <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
+                            <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
                         @endif
                         @if ($errors->any())
                             <div class="alert alert-danger alert-dismissible">
@@ -84,9 +84,10 @@
                         </div>
                         <div class="mb-3">
                             <label for="investment_id">الصندوق</label>
-                            <select name="investment_id" id="investment_id" class="form-control" @error('investment_id') is-invalid @enderror>
+                            <select name="investment_id" id="investment_id" class="form-control"
+                                @error('investment_id') is-invalid @enderror>
                                 @foreach ($investments as $item)
-                                    <option value="{{$item->id}}">
+                                    <option value="{{ $item->id }}">
                                         {{ $item->name . '-' . $item->total }}
                                     </option>
                                 @endforeach
@@ -95,6 +96,21 @@
                                 <small class="invalid-feedback">{{ $message }}</small>
                             @enderror
                         </div>
+                        <div class="mb-3">
+                            <label for="expenseField_id">أوجه الصرف</label>
+                            <select name="expenseField_id" id="expenseField_id" class="form-control"
+                                @error('expenseField_id') is-invalid @enderror>
+                                @foreach ($expense_fields as $item)
+                                    <option value="{{ $item->id }}">
+                                        {{ $item->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('expenseField_id')
+                                <small class="invalid-feedback">{{ $message }}</small>
+                            @enderror
+                        </div>
+
                         <div class="mb-3">
                             <label for="total_expenses">مبلغ الصرف</label>
                             <input id="total_expenses" name="total_expenses" type="number" placeholder=""
