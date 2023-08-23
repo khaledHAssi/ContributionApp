@@ -51,7 +51,7 @@ class SubscribeController extends Controller
         $investment->total += $subscribe->value;
         $saved = $subscribe->save();
         if ($saved) {
-            $save =$investment->save();
+            $save = $investment->save();
             if ($save) {
                 return redirect()->route('subscribes.index')->with('msg', 'Subscribe Created Successfully')->with('type', 'success');
             } else {

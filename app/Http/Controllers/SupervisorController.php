@@ -13,6 +13,8 @@ class SupervisorController extends Controller
     public function index()
     {
         //
+        $supervisors = Supervisor::all();
+        return response()->view('supervisors.index')->compact('supervisors');
     }
 
     /**

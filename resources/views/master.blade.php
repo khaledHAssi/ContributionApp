@@ -6,7 +6,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <html>
 
 <head>
-  <meta charset="utf-8" >
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
@@ -16,7 +16,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('adminassets/plugins/fontawesome-free/css/all.min.css')}}">
   <link rel="stylesheet" href="{{asset('adminassets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('adminassets/plugins/jqvmap/jqvmap.min.css')}}">
-  <link rel="stylesheet" href="{{asset('adminassets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+  <link rel="stylesheet"
+    href="{{asset('adminassets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
   <link rel="stylesheet" href="{{asset('adminassets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <link rel="stylesheet" href="{{asset('adminassets/plugins/daterangepicker/daterangepicker.css')}}">
   <link rel="stylesheet" href="{{asset('adminassets/plugins/summernote/summernote-bs4.css')}}">
@@ -31,37 +32,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed" >
+<body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
-        <ul class="navbar-nav ">
+      <ul class="navbar-nav ">
         <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{route('home')}}" class="nav-link">Home</a>
-            </li>
-        </ul>
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="{{route('home')}}" class="nav-link">Home</a>
+        </li>
+      </ul>
 
 
-        <form class="form-inline ml-3">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+      <form class="form-inline ml-3">
+        <div class="input-group input-group-sm">
+          <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-navbar" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
     </nav>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4"  >
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="index3.html" class="brand-link">
         <img src="{{asset('adminassets/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo"
@@ -69,7 +70,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <span class="brand-text font-weight-light">برنامج</span>
       </a>
       <!-- Sidebar -->
-      <div class="sidebar" >
+      <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
@@ -86,6 +87,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+            <li class="nav-item">
+              <a href="{{ route('expense_fields.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-users "></i>
+                <p>
+                  {{ __('المشرفين') }}
+                </p>
+              </a>
+            </li>
             <li class="nav-item">
               <a href="{{ route('members.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-users "></i>
@@ -135,7 +144,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper  "  >
+    <div class="content-wrapper  ">
       @yield('content')
     </div>
     <!-- /.content-wrapper -->
@@ -172,7 +181,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- AdminLTE App -->
   <script src="{{asset('adminassets/dist/js/adminlte.min.js')}}"></script>
 
-<script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"></script>
 
   @yield('scripts')
 
