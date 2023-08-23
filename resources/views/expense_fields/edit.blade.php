@@ -31,7 +31,6 @@ $title = "Edit Investment"
                         </div>
                     </div>
                     @endif
-
                     <div class="mb-3">
                         <label for="name">Name</label>
                         <input id="name" name="name" type="text" placeholder="Name"
