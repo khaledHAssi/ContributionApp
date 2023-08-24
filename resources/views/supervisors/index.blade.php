@@ -7,13 +7,13 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h1 class="text-dark text-capitalize">الإشتراكات</h1>
+                <h1 class="text-dark text-capitalize">المشرفين</h1>
                 @if (session('msg'))
                 <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
                 @endif
 
-                <a href="{{ route('subscribes.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
-                    class="btn btn-success">{{ __('الإسم') }}</a>
+                <a href="{{ route('supervisors.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
+                    class="btn btn-success">{{ __('اضافة مشرف') }}</a>
                 <div class="card-header bg-dark">
                     <div class="card-tools">
                         <div class="input-group bg-light input-group-sm" style="width: 150px;">
@@ -31,36 +31,34 @@
                     <thead>
                         <tr class="bg-dark text-white">
                             <th>#</th>
-                            <th>العضو</th>
-                            <th>الصندوق</th>
-                            <th>التاريخ</th>
-                            <th>قيمة الإشتراك</th>
-                            <th>عمليات</th>
+                            <th>الصورة</th>
+                            <th>اسم المشرف</th>
+                            <th>الأيميل </th>
+                            <th>رقم الهاتف</th>
+                            <th>العمليات</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($subscriptions as $user)
+                        @forelse ($supervisors as $supervisor)
                         <tr>
                             <td>{{ $loop->index +1 }}</td>
-                            <td>{{ $user->members->name }} -
-                                @if ($user->members->type == "subscriber")
-
-                                <span class="text-green">{{$user->members->type}}</span>
-                                @else
-                                <span class="text-danger">{{$user->members->type}}</span>
-
-                                @endif
-                            </td>
                             <td>
-                                <span class="text-green">{{$user->investments->name}}</span>
+                                <img class="img-circle img-bordered-sm" height="65" width="65"
+                                    src="{{ Storage::url($supervisor->user_image) }}" alt="user image">
                             </td>
-                            <td>{{ $user->date }}</td>
-                            <td>{{ $user->value }}</td>
+                            <td>{{ $supervisor->name }}
+                            </td>
+                            <td> {{$supervisor->email}}
+                            </td>
+                            <td> {{$supervisor->phone}}
+                            </td>
+
                             <td class="d-flex">
-                                <a href="{{ route('subscribes.edit', $user) }}" class="ml-2 btn btn-primary btn-sm">
+                                <a href="{{ route('supervisors.edit', $supervisor) }}"
+                                    class="ml-2 btn btn-primary btn-sm">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form class="d-inline" action="{{ route('subscribes.destroy', $user->id) }}"
+                                <form class="d-inline" action="{{ route('supervisors.destroy', $supervisor->id) }}"
                                     method="POST">
                                     @csrf
                                     @method('delete')

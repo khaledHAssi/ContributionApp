@@ -4,6 +4,7 @@ use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\ExpenseFieldController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\SubscribeController;
+use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\InvestmentController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Route::resource('/subscribes', SubscribeController::class);
 Route::resource('/investments', InvestmentController::class);
 Route::resource('/expenses', ExpensesController::class);
 Route::resource('/expense_fields', ExpenseFieldController::class);
+Route::resource('/supervisors', SupervisorController::class);
 
 
 Route::get('', [MemberController::class, 'master'])->name('home');
