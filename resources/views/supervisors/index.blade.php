@@ -12,7 +12,7 @@
                 <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
                 @endif
 
-                <a href="{{ route('subscribes.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
+                <a href="{{ route('supervisors.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
                     class="btn btn-success">{{ __('اضافة مشرف') }}</a>
                 <div class="card-header bg-dark">
                     <div class="card-tools">
@@ -31,30 +31,34 @@
                     <thead>
                         <tr class="bg-dark text-white">
                             <th>#</th>
+                            <th>الصورة</th>
                             <th>اسم المشرف</th>
                             <th>الأيميل </th>
-                            <th>الصورة</th>
                             <th>رقم الهاتف</th>
+                            <th>العمليات</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($supervisors as $supervisor)
                         <tr>
                             <td>{{ $loop->index +1 }}</td>
+                            <td>
+                                <img class="img-circle img-bordered-sm" height="65" width="65"
+                                    src="{{ Storage::url($supervisor->user_image) }}" alt="user image">
+                            </td>
                             <td>{{ $supervisor->name }}
                             </td>
                             <td> {{$supervisor->email}}
-                            </td>
-                            <td> {{$supervisor->image}}
                             </td>
                             <td> {{$supervisor->phone}}
                             </td>
 
                             <td class="d-flex">
-                                <a href="{{ route('supervisors.edit', $user) }}" class="ml-2 btn btn-primary btn-sm">
+                                <a href="{{ route('supervisors.edit', $supervisor) }}"
+                                    class="ml-2 btn btn-primary btn-sm">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form class="d-inline" action="{{ route('supervisors.destroy', $user->id) }}"
+                                <form class="d-inline" action="{{ route('supervisors.destroy', $supervisor->id) }}"
                                     method="POST">
                                     @csrf
                                     @method('delete')
