@@ -22,10 +22,9 @@
                     @endif
                     <form action="{{ route('members.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-
                         <div class="mb-3">
                             <label for="name">الإسم</label>
-                            <input id="name" name="name" type="text" placeholder="النوع"
+                            <input id="name" name="name" type="text" placeholder="الإسم"
                                 class="form-control @error('name') is-invalid @enderror " value="{{ old('name') }}" />
                             @error('name')
                                 <small class="invalid-feedback">{{ $message }}</small>

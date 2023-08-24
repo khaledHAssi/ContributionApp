@@ -15,7 +15,9 @@ class SubscribeController extends Controller
      */
     public function index()
     {
-        $subscriptions = Subscribe::with(['members', 'investments'])->get();
+        $subscriptions = Subscribe::with('members', 'investments')->whereHas('members', function ($query) {
+            $query->where('type', 'subscriber');
+        })->get();
         return response()->view('subscribes.index', compact('subscriptions'));
     }
 
@@ -24,7 +26,10 @@ class SubscribeController extends Controller
      */
     public function create()
     {
-        $members = DB::select('SELECT `id`, `name` , `type`FROM `members`');
+        $members = DB::table('members')
+            ->select('id', 'name', 'type')
+            ->where('type', 'subscriber')
+            ->get();
         $investments = DB::select('SELECT `id`, `name` FROM `investments`');
         return view('subscribes.create', compact('members', 'investments'));
     }
@@ -39,7 +44,8 @@ class SubscribeController extends Controller
                 'member_id' => 'required',
                 'investment_id' => 'required',
                 'value' => 'required|numeric',
-                'date' => 'required|',
+                // 'date' => 'required|date_format:Y-m-d|after_or_equal:today',
+                'date' => 'required|date_format:Y-m-d|',
             ]);
         $subscribe = new subscribe;
         $subscribe->name = $request->input('name');
@@ -51,7 +57,7 @@ class SubscribeController extends Controller
         $investment->total += $subscribe->value;
         $saved = $subscribe->save();
         if ($saved) {
-            $save =$investment->save();
+            $save = $investment->save();
             if ($save) {
                 return redirect()->route('subscribes.index')->with('msg', 'Subscribe Created Successfully')->with('type', 'success');
             } else {
