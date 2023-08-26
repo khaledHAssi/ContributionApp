@@ -94,7 +94,6 @@ class SupervisorController extends Controller
         $supervisor = Supervisor::findOrFail($id);
         $supervisor->name  = $request->input('name');
         $supervisor->email = $request->input('email');
-        $supervisor->user_image = $request->input('user_image');
         $supervisor->phone = $request->input('phone');
         if ($request->hasFile('user_image')) {
             if ($supervisor->user_image != null) {

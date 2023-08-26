@@ -54,6 +54,8 @@
                             </td>
 
                             <td class="d-flex">
+                                <a href="{{ route('supervisors.show', $supervisor->id) }}"
+                                    class="btn btn-primary btn-sm mr-1"> <i class="fas fa-eye"></i> </a>
                                 <a href="{{ route('supervisors.edit', $supervisor) }}"
                                     class="ml-2 btn btn-primary btn-sm">
                                     <i class="fas fa-edit"></i>
