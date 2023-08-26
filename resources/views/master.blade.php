@@ -104,14 +104,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('subscribes.index') }}" class="nav-link">
-                <i class="nav-icon fas fa-users "></i>
-                <p>
-                  {{ __('المشتركين') }}
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
               <a href="{{ route('investments.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-users "></i>
                 <p>
@@ -120,6 +112,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
             </li>
             <li class="nav-item">
+                <a href="{{ route('subscribes.index') }}" class="nav-link">
+                  <i class="nav-icon fas fa-users "></i>
+                  <p>
+                    {{ __('المشتركين') }}
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('expense_fields.index') }}" class="nav-link">
+                  <i class="nav-icon fas fa-users "></i>
+                  <p>
+                    {{ __('أوجه الصرف') }}
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
               <a href="{{ route('expenses.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-users "></i>
                 <p>
@@ -127,14 +135,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="{{ route('expense_fields.index') }}" class="nav-link">
-                <i class="nav-icon fas fa-users "></i>
-                <p>
-                  {{ __('أوجه الصرف') }}
-                </p>
-              </a>
-            </li>
+
 
           </ul>
         </nav>
