@@ -60,7 +60,7 @@
                     <div class="mb-3">
                         <label for="name">اسم المشرف</label>
                         <input id="name" name="name" type="text" placeholder="الإسم" class="form-control
-                         @error('name') is-invalid @enderror " name="{{ old('name') }}" />
+                         @error('name') is-invalid @enderror " value="{{ old('name') }}" />
 
                         @error('name')
                         <small class="invalid-feedback">{{ $message }}</small>
@@ -70,7 +70,7 @@
                     <div class="mb-3">
                         <label for="email">الأيميل</label>
                         <input id="email" name="email" type="email" placeholder="example@gmail.com"
-                            class="form-control @error('email') is-invalid @enderror " name="{{ old('name') }}" />
+                            class="form-control @error('email') is-invalid @enderror " value="{{ old('email') }}" />
                         @error('email')
                         <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
@@ -79,8 +79,8 @@
                         <label for="exampleInputFile">اضافة صورة</label>
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="exampleInputFile" name="user_image"
-                                    @error('user_image') is-invalid @enderror>
+                                <input type="file" class="custom-file-input" name="user_image" id="exampleInputFile" value="{{ old('user_image') }}"
+                                    @error('user_image') is-invalid @enderror >
                                 <label class="custom-file-label" for="exampleInputFile">Choose Img</label>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                     <div class="mb-3">
                         <label for="phone">رقم الهاتف</label>
                         <input id="phone" name="phone" type="number" placeholder=""
-                            class="form-control @error('phone') is-invalid @enderror " name="{{ old('name') }}" />
+                            class="form-control @error('phone') is-invalid @enderror " value="{{ old('phone') }}" />
                         @error('phone')
                         <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
@@ -108,11 +108,18 @@
 </div>
 </div>
 
-<script src="{{ asset('adminassets\plugins\bs-custom-file-input\bs-custom-file-input.min.js') }}"></script>
-<script>
-    $(function() {
+@stop
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.3.1/tinymce.min.js"
+    integrity="sha512-eV68QXP3t5Jbsf18jfqT8xclEJSGvSK5uClUuqayUbF5IRK8e2/VSXIFHzEoBnNcvLBkHngnnd3CY7AFpUhF7w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @stop
+    @section('scripts')
+    <script src="{{ asset('adminassets\plugins\bs-custom-file-input\bs-custom-file-input.min.js') }}"></script>
+    <script>
+        $(function() {
             bsCustomFileInput.init();
         });
-</script>
-
-@stop
+    </script>
+@endsection

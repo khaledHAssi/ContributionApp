@@ -122,6 +122,7 @@
     </div>
     </div>
     </div>
+
 @section('scripts')
     <script src="{{ asset('adminassets\plugins\bs-custom-file-input\bs-custom-file-input.min.js') }}"></script>
     <script>

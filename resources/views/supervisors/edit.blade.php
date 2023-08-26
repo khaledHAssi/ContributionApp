@@ -44,8 +44,6 @@
                         <small class="invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
-
-
                     <div class="form-group">
                         <label for="exampleInputFile">Edit Img</label>
                         <div class="input-group">
@@ -61,9 +59,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="phone">رقم الهاتف</label>
-                        <input id="phone" name="phone" type="number" placeholder=""
+                        <input id="phone" name="phone" type="number" placeholder="رقم الجوال"
                             class="form-control @error('phone') is-invalid @enderror "
-                            value="{{ old('phone' ,$supervisor->phone) }}"" />
+                            value="{{ old('phone' ,$supervisor->phone) }}" />
                         @error('phone')
                         <small class=" invalid-feedback">{{ $message }}</small>
                         @enderror
@@ -87,49 +85,12 @@
     integrity="sha512-eV68QXP3t5Jbsf18jfqT8xclEJSGvSK5uClUuqayUbF5IRK8e2/VSXIFHzEoBnNcvLBkHngnnd3CY7AFpUhF7w=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script>
-    tinymce.init({
-        selector: '.myeditor'
-    })
-</script>
-
-<script src="{{ asset('adminassets\plugins\bs-custom-file-input\bs-custom-file-input.min.js') }}"></script>
-<script>
-    $(function() {
+    @stop
+    @section('scripts')
+    <script src="{{ asset('adminassets\plugins\bs-custom-file-input\bs-custom-file-input.min.js') }}"></script>
+    <script>
+        $(function() {
             bsCustomFileInput.init();
         });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.3.1/tinymce.min.js"
-    integrity="sha512-eV68QXP3t5Jbsf18jfqT8xclEJSGvSK5uClUuqayUbF5IRK8e2/VSXIFHzEoBnNcvLBkHngnnd3CY7AFpUhF7w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script>
-    tinymce.init({
-        selector: '.myeditor'
-    })
-</script>
-
-<script src="{{ asset('adminassets\plugins\bs-custom-file-input\bs-custom-file-input.min.js') }}"></script>
-<script>
-    $(function() {
-            bsCustomFileInput.init();
-        });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.3.1/tinymce.min.js"
-    integrity="sha512-eV68QXP3t5Jbsf18jfqT8xclEJSGvSK5uClUuqayUbF5IRK8e2/VSXIFHzEoBnNcvLBkHngnnd3CY7AFpUhF7w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script>
-    tinymce.init({
-            selector: '.myeditor'
-        })
-</script>
-
-<script src="{{ asset('adminassets\plugins\bs-custom-file-input\bs-custom-file-input.min.js') }}"></script>
-<script>
-    $(function() {
-                bsCustomFileInput.init();
-            });
-</script>
-
-@stop
+    </script>
+@endsection

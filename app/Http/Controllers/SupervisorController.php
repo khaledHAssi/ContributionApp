@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Supervisor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SupervisorController extends Controller
 {
@@ -36,13 +37,12 @@ class SupervisorController extends Controller
             $request->validate([
                 'name' => 'required|string|min:3|max:20|',
                 'email' => 'required|string ',
-                'user_image' => 'nullable|image|mimes:jpg,png|max:1024',
+                'user_image' => 'required|image|mimes:jpg,png|max:1024',
                 'phone' => 'required|numeric|digits:12|',
             ]);
         $supervisor = new Supervisor();
         $supervisor->name  = $request->input('name');
         $supervisor->email = $request->input('email');
-        $supervisor->user_image = $request->input('user_image');
         $supervisor->phone = $request->input('phone');
         if ($request->hasFile('user_image')) {
             $userImage = $request->file('user_image');
@@ -96,12 +96,20 @@ class SupervisorController extends Controller
         $supervisor->email = $request->input('email');
         $supervisor->user_image = $request->input('user_image');
         $supervisor->phone = $request->input('phone');
-
+        if ($request->hasFile('user_image')) {
+            if ($supervisor->user_image != null) {
+                Storage::delete($supervisor->user_image);
+            }
+            $userImage = $request->file('user_image');
+            $imageName = time() . '_image' . $supervisor->name . '.' . $userImage->getClientOriginalExtension();
+            $userImage->storePubliclyAs('supervisors', $imageName, ['disk' => 'public']);
+            $supervisor->user_image = 'supervisors/' . $imageName;
+        }
         $saved =  $supervisor->save();
         if ($saved) {
-            return redirect()->route('supervisors.index')->with('msg', 'Supervisor updated Successfully')->with('type', 'success');
+            return redirect()->route('supervisors.index')->with('msg', 'تم التعديل بنجاح')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'Supervisor update Failed')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'فشل التعديل')->with('type', 'danger');
         }
     }
 
@@ -110,7 +118,19 @@ class SupervisorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $supervisor = Supervisor::findOrFail($id);
+        $deleted = $supervisor->delete();
 
+        if ($deleted && $supervisor->user_image) {
+            $ifDeleted = Storage::delete($supervisor->user_image);
+
+            if ($ifDeleted) {
+                return redirect()->route('supervisors.index')->with('msg', 'تم حذف المشرف')->with('type', 'success');
+            } else {
+                return redirect()->route('supervisors.index')->with('msg', 'فشل حذف المشرف')->with('type', 'danger');
+            }
+        }
+
+        return redirect()->route('supervisors.index')->with('msg', 'تم حذف المشرف')->with('type', 'success');
     }
 }
