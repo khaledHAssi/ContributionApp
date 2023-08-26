@@ -14,6 +14,6 @@ class Member extends Model
     }
     public function supervisor()
     {
-        return $this->belongsTo(SuperVisor::class , 'supervisor_id');
+        return $this->belongsTo(Supervisor::class , 'supervisor_id');
     }
 }

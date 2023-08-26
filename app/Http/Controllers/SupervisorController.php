@@ -62,9 +62,11 @@ class SupervisorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Supervisor $supervisor)
+    public function show($id)
     {
-        //
+        $supervisor = Supervisor::findOrFail($id);
+        $supervisor = $supervisor->load('members','members.subscribes');
+        return response()->view('supervisors.show' , compact('supervisor'));
     }
 
     /**
