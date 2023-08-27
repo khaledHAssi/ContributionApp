@@ -46,8 +46,8 @@
                         <div class="mb-3">
                             <label for="type">النوع</label>
                             <select name="type" class="form-control @error('type') is-invalid @enderror">
-                                <option @selected(old('type') == 'subscriber') value="subscriber">subscriber</option>
-                                <option @selected(old('type') == 'contributor') value="contributor">Contributor</option>
+                                <option @selected(old('type') == 'subscriber') value="subscriber">مشترك</option>
+                                <option @selected(old('type') == 'contributor') value="contributor">متبرع</option>
                             </select>
                             @error('type')
                                 <small class="invalid-feedback">{{ $message }}</small>

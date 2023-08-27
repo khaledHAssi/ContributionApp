@@ -10,6 +10,6 @@ class Supervisor extends Model
     use HasFactory;
     public function members()
     {
-        return $this->hasMany(Member::class, 'supervisor_id')->withDefault();
+        return $this->hasMany(Member::class, 'supervisor_id');
     }
 }
