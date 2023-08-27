@@ -4,8 +4,7 @@
 $members = \App\Models\Member::all();
 $subscriberCount = $members->where('type', 'subscriber')->count();
 $contributorCount = $members->where('type', 'contributor')->count();
-@endphp
-@section('title', $supervisor->name . ' Members')
+    @endphp
 
     <style>
         .Headers4 {
@@ -96,7 +95,7 @@ $contributorCount = $members->where('type', 'contributor')->count();
                             </div>
                         </div>
                     </div>
-                    <span class="h4" style="font-weight: 900;display: block;">الأعضاء المُشرِف عليهم</span>
+                    <span class="h2 text-primary" style="display: block;">الأعضاء المُشرِف عليهم</span>
                     <div class="card-header bg-dark">
                         <div class="card-tools">
                             <div class="input-group bg-light input-group-sm" style="width: 150px;">

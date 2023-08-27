@@ -48,7 +48,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </ul>
 
 
-      <form class="form-inline mt-3">
+      <form class="form-inline ">
         <div class="input-group input-group-sm">
           <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
           <div class="input-group-append">
@@ -72,7 +72,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex mr-2">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex ">
           <div class="image">
             <img src="{{asset('adminassets/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2"
               alt="User Image">
