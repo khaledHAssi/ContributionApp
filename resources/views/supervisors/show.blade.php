@@ -4,8 +4,7 @@
 $members = \App\Models\Member::all();
 $subscriberCount = $members->where('type', 'subscriber')->count();
 $contributorCount = $members->where('type', 'contributor')->count();
-@endphp
-@section('title', $supervisor->name . ' Members')
+    @endphp
 
 <style>
     .Headers4 {
@@ -94,6 +93,89 @@ $contributorCount = $members->where('type', 'contributor')->count();
                             </div> --}}
                         </div>
                     </div>
+<<<<<<< HEAD
+=======
+                    <span class="h2 text-primary" style="display: block;">الأعضاء المُشرِف عليهم</span>
+                    <div class="card-header bg-dark">
+                        <div class="card-tools">
+                            <div class="input-group bg-light input-group-sm" style="width: 150px;">
+                                <input id="user-search" type="text" class="form-control float-right"
+                                    placeholder="إبحث عن أعضاء">
+                                <div class="input-group-append">
+                                    <button id="search-button" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table id="users-table" class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="bg-dark text-white">
+                                <th>#</th>
+                                <th>الإسم</th>
+                                <th>النوع</th>
+                                <th>رقم الجوال</th>
+                                <th>رقم الهوية</th>
+                                <th>الراتب</th>
+                                <th>المبلغ المطلوب دفعه / مجموع اشتراكاته</th>
+                                <th>المبلغ المتبقي</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    @foreach ($supervisor->members as $student)
+
+    @php
+   $creationDate = new DateTime($student->created_at);
+        $currentDate = new DateTime();
+        $interval = $creationDate->diff($currentDate);
+        $monthDiff = $interval->format('%m') + 12 * $interval->format('%y');
+        $contribution = $student->contributions;
+        $totalAmount = $contribution * $monthDiff;
+    @endphp
+        @php
+
+        @endphp
+                @php
+            $total = 0;
+            $RemainingAmount = 0 ;
+                @endphp
+
+     @foreach ($student->subscribes as $item)
+         @php
+         $total += $item->value;
+         $RemainingAmount = $totalAmount - $total;
+         @endphp
+     @endforeach
+
+
+
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $student->name }}</td>
+                                    @if ($student->type === 'subscriber')
+                                    <td class="text-danger">مشترك</td>
+                                    @else
+                                    <td class="text-success">متبرع</td>
+                                    @endif
+                                    <td>{{ $student->phone }}</td>
+                                    <td>{{ $student->identification_number }}</td>
+                                    <td>{{ $student->salary }}</td>
+                                    @if ($student->subscribes->count() > 0)
+                                    <td>{{ $totalAmount }} - {{ $total }}</td>
+                                @else
+                                    <td class="text-danger"> {{$totalAmount}} .. ليس لديه اشتراكات</td>
+                                @endif
+                                @if ($student->subscribes->count() > 0)
+                                <td>{{$RemainingAmount}}</td>
+                                @else
+                                <td class="text-danger">متبرع</td>
+                                @endif
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+>>>>>>> acf3ee05995e1f9ff19c1615fd82f0dbccb8a282
                 </div>
                 <span class="h4" style="font-weight: 900;display: block;">الأعضاء المُشرِف عليهم</span>
                 <div class="card-header bg-dark">

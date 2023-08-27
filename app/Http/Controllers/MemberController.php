@@ -93,14 +93,14 @@ class MemberController extends Controller
     {
         $validator =
             $request->validate([
-                'job' => 'nullable|string|min:3',
-                'name' => 'nullable|string|min:3|max:20|',
+                'job' => 'required|string|min:3',
+                'name' => 'required|string|min:3|max:20|',
                 'supervisor_id' => 'required|',
-                'phone' => 'nullable|numeric|digits:12|',
-                'identification_number' => 'nullable|numeric|digits:9|',
-                'salary' => 'nullable|numeric',
-                'contributions' => 'nullable|numeric',
-                'birthday' => 'nullable|date',
+                'phone' => 'required|numeric|digits:12|',
+                'identification_number' => 'required|numeric|digits:9|',
+                'salary' => 'required|numeric',
+                'contributions' => 'required|numeric',
+                'birthday' => 'required|date',
             ]);
         $member = Member::findOrFail($id);
         $member->name = $request->input('name');
@@ -113,9 +113,10 @@ class MemberController extends Controller
         $member->contributions = $request->input('contributions');
         $member->birthday = $request->input('birthday');
         $saved = $member->save();
-        if ($saved) {
+    if ($saved) {
             return redirect()->route('members.index')->with('msg', 'ثم تحديث العضو بنجاح ')->with('type', 'success');
-        } else {
+        }
+    else {
             return redirect()->back()->with('msg', 'لم يتم التحديث ')->with('type', 'danger');
         }
     }
