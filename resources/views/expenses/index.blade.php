@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h1 class="text-dark text-capitalize mr-3">المصروفات</h1>
+                <h1 class="text-primary text-capitalize mr-3">المصروفات</h1>
 
                 <div class="card-body">
                     @if (session('msg'))
@@ -68,15 +68,17 @@
                                         method="POST">
                                         @csrf
                                         @method('delete')
-                                        <button onclick="return confirm('Are you sure!?')"
+                                        <button onclick="return confirm('!هل أنت متأكد؟')"
                                             class="btn btn-danger btn-sm">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
                                 </td>
                                 @empty
-                                <td class="text-danger colspan-6">لا يوجد بيانات</td>
-                                @endforelse
+                            <tr>
+                                <td class="text-danger" colspan="6">لا يوجد بيانات</td>
+                            </tr>
+                            @endforelse
                             </tr>
 
                         </tbody>

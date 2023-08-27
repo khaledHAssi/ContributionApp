@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h1 class="text-dark text-capitalize">أوجه الصرف</h1>
+                <h1 class="text-primary text-capitalize">أوجه الصرف</h1>
 
                 <div class="card-body">
                     @if (session('msg'))
@@ -19,8 +19,7 @@
                     <div class="card-header bg-dark">
                         <div class="card-tools">
                             <div class="input-group bg-light  input-group-sm" style="width: 150px;">
-                                <input id="user-search" type="text" class="form-control float-right"
-                                    placeholder="بحث">
+                                <input id="user-search" type="text" class="form-control float-right" placeholder="بحث">
                                 <div class="input-group-append">
                                     <button id="search-button" class="btn btn-default">
                                         <i class="fas fa-search"></i>
@@ -54,15 +53,17 @@
                                         method="POST">
                                         @csrf
                                         @method('delete')
-                                        <button onclick="return confirm('Are you sure!?')"
+                                        <button onclick="return confirm('!هل أنت متأكد؟')"
                                             class="btn btn-danger btn-sm">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
                                 </td>
                                 @empty
-                                <td class="text-danger">لا يوجد بيانات</td>
-                                @endforelse
+                            <tr>
+                                <td class="text-danger" colspan="6">لا يوجد بيانات</td>
+                            </tr>
+                            @endforelse
                             </tr>
 
                         </tbody>

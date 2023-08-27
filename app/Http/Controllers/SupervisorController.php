@@ -53,9 +53,9 @@ class SupervisorController extends Controller
         $saved =  $supervisor->save();
 
         if ($saved) {
-            return redirect()->route('supervisors.index')->with('msg', 'Supervisor Created Successfully')->with('type', 'success');
+            return redirect()->route('supervisors.index')->with('msg', 'ثم إنشاء مشرف')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'Supervisor Create Failed')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'لم يتم إنشاء مشرف')->with('type', 'danger');
         }
     }
 
@@ -126,7 +126,7 @@ class SupervisorController extends Controller
             if ($ifDeleted) {
                 return redirect()->route('supervisors.index')->with('msg', 'تم حذف المشرف')->with('type', 'success');
             } else {
-                return redirect()->route('supervisors.index')->with('msg', 'فشل حذف المشرف')->with('type', 'danger');
+                return redirect()->route('supervisors.index')->with('msg', 'لم يتم حذف المشرف')->with('type', 'danger');
             }
         }
 

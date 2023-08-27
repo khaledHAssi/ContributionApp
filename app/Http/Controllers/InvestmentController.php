@@ -21,7 +21,7 @@ class InvestmentController extends Controller
     public function index()
     {
         $investments = Investment::all();
-        $investments = $investments->load('subscribers','subscribers.members');
+        $investments = $investments->load('subscribers', 'subscribers.members');
         return response()->view('investments.index', compact('investments'));
     }
 
@@ -52,9 +52,9 @@ class InvestmentController extends Controller
 
 
         if ($saved) {
-            return redirect()->route('investments.index')->with('msg', 'Investment Created Successfully')->with('type', 'success');
+            return redirect()->route('investments.index')->with('msg', 'ثم إنشاء صندوق بنجاح')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'Investment Create Failed')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'لم يتم إنشاء صندوق')->with('type', 'danger');
         }
     }
 
@@ -92,9 +92,9 @@ class InvestmentController extends Controller
         $investment->name = $request->input('name');
         $saved = $investment->save();
         if ($saved) {
-            return redirect()->route('investments.index')->with('msg', 'Investment updated Successfully')->with('type', 'success');
+            return redirect()->route('investments.index')->with('msg', 'ثم تحديث الصندوق بنجاح')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'Investment update Failed ')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'لم يتم تحديث الصندوق ')->with('type', 'danger');
         }
     }
 
@@ -107,9 +107,9 @@ class InvestmentController extends Controller
         $investment = Investment::findOrFail($id);
         $deleted = $investment->delete();
         if ($deleted) {
-            return redirect()->back()->with('msg', 'Investment deleted successfully')->with('type', 'success');
+            return redirect()->back()->with('msg', 'ثم حذف الصندوق بنجاح')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'Investment delete Failed')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'لم يتم حذف الصندوق')->with('type', 'danger');
         }
     }
 }

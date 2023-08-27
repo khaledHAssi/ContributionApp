@@ -29,7 +29,7 @@ class MemberController extends Controller
     public function create()
     {
         $supervisors = Supervisor::all();
-        return view('members.create',compact('supervisors'));
+        return view('members.create', compact('supervisors'));
     }
 
     /**
@@ -43,7 +43,7 @@ class MemberController extends Controller
                 'name' => 'required|string|min:3|max:20|',
                 'supervisor_id' => 'required|',
                 'phone' => 'required|numeric|digits:12|',
-                'identification_number' => 'required|numeric|digits:10|',
+                'identification_number' => 'required|numeric|digits:9|',
                 'salary' => 'required|numeric',
                 'contributions' => 'required|numeric',
                 'birthday' => 'required|date',
@@ -60,9 +60,9 @@ class MemberController extends Controller
         $member->birthday = $request->input('birthday');
         $saved = $member->save();
         if ($saved) {
-            return redirect()->route('members.index')->with('msg', 'Member Created Successfully')->with('type', 'success');
+            return redirect()->route('members.index')->with('msg', 'ثم إنشاء عضو بنجاح')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'Member Create Failed')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'لم يتم إنشاء عضو')->with('type', 'danger');
         }
     }
 
@@ -83,7 +83,7 @@ class MemberController extends Controller
         $members = Member::all();
         $members = $members->load('supervisor');
         $supervisors = DB::select('SELECT `id`, `name` , `email` FROM `supervisors`');
-        return view('members.edit', compact('member', 'members','supervisors'));
+        return view('members.edit', compact('member', 'members', 'supervisors'));
     }
 
     /**
@@ -97,7 +97,7 @@ class MemberController extends Controller
                 'name' => 'nullable|string|min:3|max:20|',
                 'supervisor_id' => 'required|',
                 'phone' => 'nullable|numeric|digits:12|',
-                'identification_number' => 'nullable|numeric|digits:10|',
+                'identification_number' => 'nullable|numeric|digits:9|',
                 'salary' => 'nullable|numeric',
                 'contributions' => 'nullable|numeric',
                 'birthday' => 'nullable|date',
@@ -114,9 +114,9 @@ class MemberController extends Controller
         $member->birthday = $request->input('birthday');
         $saved = $member->save();
         if ($saved) {
-            return redirect()->route('members.index')->with('msg', 'Member updated successfully')->with('type', 'success');
+            return redirect()->route('members.index')->with('msg', 'ثم تحديث العضو بنجاح ')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'Member update Failed')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'لم يتم التحديث ')->with('type', 'danger');
         }
     }
 
@@ -128,9 +128,9 @@ class MemberController extends Controller
         $member = Member::findOrFail($id);
         $deleted = $member->delete();
         if ($deleted) {
-            return redirect()->back()->with('msg', 'Member deleted successfully')->with('type', 'success');
+            return redirect()->back()->with('msg', 'ثم حذف العضو بنجاح')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'Member delete Failed')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'لم يتم حذف العضو')->with('type', 'danger');
         }
     }
 }

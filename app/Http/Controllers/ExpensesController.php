@@ -24,7 +24,7 @@ class ExpensesController extends Controller
     {
         //
         $expenses = Expense::all();
-        $expenses = $expenses->load('investment','expense_field');
+        $expenses = $expenses->load('investment', 'expense_field');
         return response()->view('expenses.index', compact('expenses'));
     }
 
@@ -34,8 +34,8 @@ class ExpensesController extends Controller
     public function create()
     {
         $investments = Investment::all();
-        $expense_fields =Expense_field::all() ;
-        return view('expenses.create', compact('investments','expense_fields'));
+        $expense_fields = Expense_field::all();
+        return view('expenses.create', compact('investments', 'expense_fields'));
     }
 
     /**
@@ -45,7 +45,7 @@ class ExpensesController extends Controller
     {
         //
         $validator =
-                    $request->validate([
+            $request->validate([
                 'name' => 'required|string|min:3|max:20|',
                 'details' => 'required|string|min:20',
                 'investment_id' => 'required|',
@@ -61,18 +61,18 @@ class ExpensesController extends Controller
         $investment = Investment::find($request->input('investment_id'));
         if ($expenses->total_expenses <= $investment->total) {
             $investment->total -= $expenses->total_expenses;
-        }else{
+        } else {
             return redirect()->back()->with('msg', 'total expense cannot be more than investment total')->with('type', 'danger');
         }
         $saved = $expenses->save();
         $save = $investment->save();
         if ($saved && $save) {
-            return redirect()->route('expenses.index')->with('msg', 'Expense Created Successfully')->with('type', 'success');
+            return redirect()->route('expenses.index')->with('msg', 'تم إنشاء المصاريف بنجاح')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'Expense Create Failed')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'لم يتم المصاريف')->with('type', 'danger');
         }
-}
-/**
+    }
+    /**
      * Display the specified resource.
      */
     public function show(Expense $expenses)
@@ -88,8 +88,8 @@ class ExpensesController extends Controller
         $expenses = Expense::find($id);
         $investments = DB::select('SELECT `id`, `name` , `total`FROM `investments` ');
         $expense_fields = DB::select('SELECT `id`, `name` ,`created_at` FROM `expense_fields` ');
-        $expenses = $expenses->load('investment','expense_field');
-        return view('expenses.edit', compact('expenses', 'investments','expense_fields'));
+        $expenses = $expenses->load('investment', 'expense_field');
+        return view('expenses.edit', compact('expenses', 'investments', 'expense_fields'));
     }
     /**
      * Update the specified resource in storage.
@@ -113,9 +113,9 @@ class ExpensesController extends Controller
         $expenses->expenseField_id = $request->input('expenseField_id');
         $saved = $expenses->save();
         if ($saved) {
-            return redirect()->route('expenses.index')->with('msg', 'Expense updated Successfully')->with('type', 'success');
+            return redirect()->route('expenses.index')->with('msg', 'تم تحديث المصاريف بنجاح')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', ' Expense update Failed ')->with('type', 'danger');
+            return redirect()->back()->with('msg', ' لم يتم تحديث المصاريف ')->with('type', 'danger');
         }
     }
 
@@ -129,9 +129,9 @@ class ExpensesController extends Controller
 
         $deleted = $expenses->delete();
         if ($deleted) {
-            return redirect()->back()->with('msg', 'Expense deleted successfully')->with('type', 'success');
+            return redirect()->back()->with('msg', 'تم حذف المصاريف بنجاح')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'Expense delete Failed')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'لم يتم حذف المصاريف')->with('type', 'danger');
         }
     }
 }

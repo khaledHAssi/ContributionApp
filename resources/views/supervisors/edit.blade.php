@@ -45,7 +45,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputFile">Edit Img</label>
+                        <label for="exampleInputFile">تعديل الصورة</label>
                         <div class="input-group">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input @error('user_image') is-invalid @enderror"
@@ -85,12 +85,12 @@
     integrity="sha512-eV68QXP3t5Jbsf18jfqT8xclEJSGvSK5uClUuqayUbF5IRK8e2/VSXIFHzEoBnNcvLBkHngnnd3CY7AFpUhF7w=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    @stop
-    @section('scripts')
-    <script src="{{ asset('adminassets\plugins\bs-custom-file-input\bs-custom-file-input.min.js') }}"></script>
-    <script>
-        $(function() {
+@stop
+@section('scripts')
+<script src="{{ asset('adminassets\plugins\bs-custom-file-input\bs-custom-file-input.min.js') }}"></script>
+<script>
+    $(function() {
             bsCustomFileInput.init();
         });
-    </script>
+</script>
 @endsection

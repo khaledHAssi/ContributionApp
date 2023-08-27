@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h1 class="text-dark text-capitalize">المشرفين</h1>
+                <h1 class="text-primary text-capitalize">المشرفين</h1>
                 @if (session('msg'))
                 <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
                 @endif
@@ -64,7 +64,7 @@
                                     method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button onclick="return confirm('Are you sure!?')" class="btn btn-danger btn-sm">
+                                    <button onclick="return confirm('!هل أنت متأكد؟')" class="btn btn-danger btn-sm">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
@@ -72,7 +72,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6">No Data Found</td>
+                            <td class="text-danger" colspan="6">لا يوجد بيانات</td>
                         </tr>
                         @endforelse
                     </tbody>

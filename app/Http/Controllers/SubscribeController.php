@@ -59,9 +59,9 @@ class SubscribeController extends Controller
         if ($saved) {
             $save = $investment->save();
             if ($save) {
-                return redirect()->route('subscribes.index')->with('msg', 'Subscribe Created Successfully')->with('type', 'success');
+                return redirect()->route('subscribes.index')->with('msg', 'ثم إنشاء إشتراك بنجاح')->with('type', 'success');
             } else {
-                return redirect()->back()->with('msg', 'Subscribe Create Failed')->with('type', 'danger');
+                return redirect()->back()->with('msg', 'لم يتم إنشاء إشتراك')->with('type', 'danger');
             }
         }
     }
@@ -104,9 +104,9 @@ class SubscribeController extends Controller
         $subscribe->member_id = $request->input('member_id');
         $saved = $subscribe->save();
         if ($saved) {
-            return redirect()->route('subscribes.index')->with('msg', 'Subscribe updated Successfully')->with('type', 'success');
+            return redirect()->route('subscribes.index')->with('msg', 'ثم تحديث الإشتراك بنجاح')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'Subscribe update Failed')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'لم يتم تحديث الإشتراك')->with('type', 'danger');
         }
     }
 
@@ -118,9 +118,9 @@ class SubscribeController extends Controller
         $subscribe = subscribe::findOrFail($id);
         $deleted = $subscribe->delete();
         if ($deleted) {
-            return redirect()->back()->with('msg', 'Subscribe deleted successfully')->with('type', 'success');
+            return redirect()->back()->with('msg', 'ثم حذف الإشتراك بنجاح')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'Subscribe delete Failed')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'لم يتم حذف الإشتراك')->with('type', 'danger');
         }
     }
 }

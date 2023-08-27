@@ -7,13 +7,13 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h1 class="text-dark text-capitalize">الإشتراكات</h1>
+                <h1 class="text-primary text-capitalize">الإشتراكات</h1>
                 @if (session('msg'))
                 <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
                 @endif
 
                 <a href="{{ route('subscribes.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
-                    class="btn btn-success">{{ __('الإسم') }}</a>
+                    class="btn btn-success">{{ __('إضافة مشترك') }}</a>
                 <div class="card-header bg-dark">
                     <div class="card-tools">
                         <div class="input-group bg-light input-group-sm" style="width: 150px;">
@@ -35,7 +35,7 @@
                             <th>الصندوق</th>
                             <th>التاريخ</th>
                             <th>قيمة الإشتراك</th>
-                            <th>عمليات</th>
+                            <th>العمليات</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,7 +64,7 @@
                                     method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button onclick="return confirm('Are you sure!?')" class="btn btn-danger btn-sm">
+                                    <button onclick="return confirm('!هل أنت متأكد؟')" class="btn btn-danger btn-sm">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
@@ -72,7 +72,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6">No Data Found</td>
+                            <td class="text-danger" colspan="6">لا يوجد بيانات</td>
                         </tr>
                         @endforelse
                     </tbody>

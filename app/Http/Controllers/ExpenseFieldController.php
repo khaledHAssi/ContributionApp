@@ -48,9 +48,9 @@ class ExpenseFieldController extends Controller
         $expense_fields->notes = $request->input('notes');
         $saved = $expense_fields->save();
         if ($saved) {
-            return redirect()->route('expense_fields.index')->with('msg', 'تم التعديل بنجاح')->with('type', 'success');
+            return redirect()->route('expense_fields.index')->with('msg', 'تم إنشاء وجه الصرف بنجاح')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'يوجد خطأ في البيانات المدخلة')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'لم يتم إنشاء وجه صرف')->with('type', 'danger');
         }
     }
 
@@ -93,7 +93,7 @@ class ExpenseFieldController extends Controller
         if ($saved) {
             return redirect()->route('expense_fields.index')->with('msg', 'تم التعديل بنجاح')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', ' يوجد خطأ في البيانات المدخلة')->with('type', 'danger');
+            return redirect()->back()->with('msg', ' لم يتم التعديل ')->with('type', 'danger');
         }
     }
 
@@ -107,9 +107,9 @@ class ExpenseFieldController extends Controller
 
         $deleted = $expense_fields->delete();
         if ($deleted) {
-            return redirect()->back()->with('msg', 'Expenses Fields deleted successfully')->with('type', 'success');
+            return redirect()->back()->with('msg', 'تم حذف وجه الصرف')->with('type', 'success');
         } else {
-            return redirect()->back()->with('msg', 'Expenses Fields delete Failed')->with('type', 'danger');
+            return redirect()->back()->with('msg', 'لم يتم حذف وجه الصرف')->with('type', 'danger');
         }
     }
 }
