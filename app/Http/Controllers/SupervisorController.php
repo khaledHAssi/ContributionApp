@@ -36,7 +36,7 @@ class SupervisorController extends Controller
         $validator =
             $request->validate([
                 'name' => 'required|string|min:3|max:20|',
-                'email' => 'required|string ',
+                'email' => 'required|string|unique:supervisors,email',
                 'user_image' => 'required|image|mimes:jpg,png|max:1024',
                 'phone' => 'required|numeric|digits:12|',
             ]);
@@ -65,8 +65,8 @@ class SupervisorController extends Controller
     public function show($id)
     {
         $supervisor = Supervisor::findOrFail($id);
-        $supervisor = $supervisor->load('members','members.subscribes');
-        return response()->view('supervisors.show' , compact('supervisor'));
+        $supervisor = $supervisor->load('members', 'members.subscribes');
+        return response()->view('supervisors.show', compact('supervisor'));
     }
 
     /**
@@ -89,7 +89,7 @@ class SupervisorController extends Controller
         $validator =
             $request->validate([
                 'name' => 'required|string|min:3|max:20|',
-                'email' => 'required|string ',
+                'email' => 'required|string|unique:supervisors,email',
                 'user_image' => 'nullable|image|mimes:jpg,png|max:1024',
                 'phone' => 'required|numeric|digits:12|',
             ]);
