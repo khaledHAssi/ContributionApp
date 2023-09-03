@@ -6,6 +6,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\InvestmentController;
+use App\Http\Controllers\ReportsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,5 +27,12 @@ Route::resource('/expenses', ExpensesController::class);
 Route::resource('/expense_fields', ExpenseFieldController::class);
 Route::resource('/supervisors', SupervisorController::class);
 
+Route::get('/Home', [MemberController::class, 'master'])->name('home');
 
-Route::get('', [MemberController::class, 'master'])->name('home');
+Route::prefix('reports/')->name('reports.')->group(function () {
+    Route::get('members', [ReportsController::class, 'members'])->name('members');
+    Route::get('members/subscribes/{id}', [ReportsController::class, 'membersSubscribes'])->name('members.Subscribes');
+    Route::get('investments', [ReportsController::class, 'investments'])->name('investment');
+    Route::get('expenses', [ReportsController::class, 'expenses'])->name('expenses');
+    Route::get('supervisors', [ReportsController::class, 'supervisors'])->name('supervisors');
+});

@@ -42,10 +42,15 @@
                         @forelse ($supervisors as $supervisor)
                         <tr>
                             <td>{{ $loop->index +1 }}</td>
+                            @if ($supervisor->user_image != null )
                             <td>
                                 <img class="img-circle img-bordered-sm" height="65" width="65"
-                                    src="{{ Storage::url($supervisor->user_image) }}" alt="user image">
+                                src="{{ Storage::url($supervisor->user_image) }}" alt="user image">
                             </td>
+                                    @else
+                                        <td style="color:red;">No Pic</td>
+                                    @endif
+
                             <td>{{ $supervisor->name }}
                             </td>
                             <td> {{$supervisor->email}}

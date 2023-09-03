@@ -10,7 +10,7 @@ class Member extends Model
     use HasFactory;
     public function subscribes()
     {
-        return $this->hasMany(subscribe::class , 'member_id');
+        return $this->hasMany(Subscribe::class , 'member_id');
     }
     public function supervisor()
     {

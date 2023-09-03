@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use App\Models\Supervisor;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
@@ -12,6 +13,7 @@ class MemberController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function master()
     {
         return view('master');
@@ -113,10 +115,9 @@ class MemberController extends Controller
         $member->contributions = $request->input('contributions');
         $member->birthday = $request->input('birthday');
         $saved = $member->save();
-    if ($saved) {
+        if ($saved) {
             return redirect()->route('members.index')->with('msg', 'ثم تحديث العضو بنجاح ')->with('type', 'success');
-        }
-    else {
+        } else {
             return redirect()->back()->with('msg', 'لم يتم التحديث ')->with('type', 'danger');
         }
     }
