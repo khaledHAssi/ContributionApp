@@ -28,16 +28,18 @@ class MemberController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        $supervisors = Supervisor::all();
-        return view('members.create', compact('supervisors'));
-    }
+    public function create(Request $request, $id = null)
+{
+    $supervisors = Supervisor::all();
+    $supervisor_id = $id; // Assign the value of 'id' to $supervisor_id
+
+    return view('members.create', compact('supervisors', 'supervisor_id'));
+}
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request , $id = null)
     {
         $validator =
             $request->validate([
@@ -67,6 +69,7 @@ class MemberController extends Controller
             return redirect()->back()->with('msg', 'لم يتم إنشاء عضو')->with('type', 'danger');
         }
     }
+
 
     /**
      * Display the specified resource.

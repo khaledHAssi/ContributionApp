@@ -8,16 +8,14 @@
     <title>Document</title>
 </head>
 <style>
-    table tr td ,
+     table tr td ,
     table tr th  {
             padding: 10px 15px ;
     }
-    h1 {
-        float: right !important;
-    }
+
 </style>
-<body>
-    <h1>الأعضاء</h1>
+<body dir="rtl">
+    <h3>تقرير الأعضاء</h3>
     <table border="1" cellspacing="0" cellpadding="0" >
         <tr>
             <th>الإسم</th>

@@ -31,7 +31,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+<style>
+    .nav-item a .fas.fa-file {
+    margin-right: 7px; /* Adjust as needed */
+}
+.nav-item a .fas.fa-angle-left {
+    margin-left: auto; /* Push it to the right */
+}
+.rtl {
+    text-align: right !important;
+}.nav-item {
+    margin-bottom: 10px; /* Adjust as needed */
+}
+.nav-link {
+    padding: 9px 5px; /* Adjust as needed */
+}.nav-item.active {
+    background-color: #f0f0f0; /* Adjust as needed */
+}
 
+</style>
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
@@ -89,8 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
             <li class="nav-item">
               <a href="{{ route('supervisors.index') }}" class="nav-link">
-                <i class="nav-icon fas fa-users "></i>
-                <p>
+                <i class="nav-icon fas fa-solid fa-user-tie"></i>                <p>
                   {{ __('المشرفين') }}
                 </p>
               </a>
@@ -105,15 +122,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             <li class="nav-item">
               <a href="{{ route('investments.index') }}" class="nav-link">
-                <i class="nav-icon fas fa-users "></i>
-                <p>
-                  {{ __('الصناديق') }}
+                <i class="nav-icon fas fa-university" style="color: #ffffffc5;"></i>
+            {{ __('الصناديق') }}
                 </p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ route('subscribes.index') }}" class="nav-link">
-                <i class="nav-icon fas fa-users "></i>
+                <i class="nav-icon fas fa-coins" style="color: #fafafac9;"></i>
                 <p>
                   {{ __('المشتركين') }}
                 </p>
@@ -121,7 +137,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             <li class="nav-item">
               <a href="{{ route('expense_fields.index') }}" class="nav-link">
-                <i class="nav-icon fas fa-users "></i>
+                <i class="nav-icon fab fa-stack-exchange" ></i>
                 <p>
                   {{ __('أوجه الصرف') }}
                 </p>
@@ -129,11 +145,44 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             <li class="nav-item">
               <a href="{{ route('expenses.index') }}" class="nav-link">
-                <i class="nav-icon fas fa-users "></i>
+                <i class="nav-icon fas a-solid fa-money-bill" style="color: rgba(255, 255, 255, 0.701);"></i>
                 <p>
                   {{ __('المصروفات') }}
                 </p>
               </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link ">
+                    <i class="nav-icon left fas fa-solid fa-file"></i>
+                    التقارير <!-- Report in Arabic -->
+                    <i class=" right fas fa-angle-left"></i> <!-- Angle-left icon for indication -->
+                </a>
+                <ul class="nav nav-treeview ">
+                    <li class="nav-item">
+                        <a href="{{route('reports.members')}}" class="nav-link ">
+                            <i class="far fa-circle nav-icon"></i> <!-- Some icon, replace with your choice -->
+                            <p>الأعضاء</p> <!-- Name of the page -->
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('reports.investment')}}" class="nav-link ">
+                            <i class="far fa-circle nav-icon"></i> <!-- Some icon, replace with your choice -->
+                            <p>الصناديق</p> <!-- Name of the page -->
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('reports.supervisors')}}" class="nav-link ">
+                            <i class="far fa-circle nav-icon"></i> <!-- Some icon, replace with your choice -->
+                            <p>المشرفين</p> <!-- Name of the page -->
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('reports.expenses')}}" class="nav-link ">
+                            <i class="far fa-circle nav-icon"></i> <!-- Some icon, replace with your choice -->
+                            <p>المصروفات</p> <!-- Name of the page -->
+                        </a>
+                    </li>
+                </ul>
             </li>
 
 

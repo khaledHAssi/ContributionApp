@@ -12,14 +12,14 @@
     <title>Document</title>
 </head>
 <style>
-    table tr td,
-    table tr th {
-        padding: 10px 15px;
-    }
+     table tr td ,
+table tr th  {
+        padding: 10px 15px ;
+}
 
 </style>
-
 <body dir="rtl">
+<h3>تقرير المصروفات</h3>
     <table border="1" cellspacing="0" cellpadding="0">
         <tr>
             <th>إسم الصرف</th>

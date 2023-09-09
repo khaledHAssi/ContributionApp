@@ -164,7 +164,7 @@ return [
          * Application Service Providers...
          */
         Barryvdh\DomPDF\ServiceProvider::class,
-        // Mccarlosen\LaravelMpdf\LaravelMpdfServiceProvider::class,
+        Mccarlosen\LaravelMpdf\LaravelMpdfServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,

@@ -21,13 +21,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/members', MemberController::class);
+Route::get('/members/create/{id?}',[MemberController::class , 'create'])->name('members.create');
 Route::resource('/subscribes', SubscribeController::class);
 Route::resource('/investments', InvestmentController::class);
 Route::resource('/expenses', ExpensesController::class);
 Route::resource('/expense_fields', ExpenseFieldController::class);
 Route::resource('/supervisors', SupervisorController::class);
 
-Route::get('/Home', [MemberController::class, 'master'])->name('home');
+Route::get('/', [MemberController::class, 'master'])->name('home');
 
 Route::prefix('reports/')->name('reports.')->group(function () {
     Route::get('members', [ReportsController::class, 'members'])->name('members');
@@ -35,4 +36,8 @@ Route::prefix('reports/')->name('reports.')->group(function () {
     Route::get('investments', [ReportsController::class, 'investments'])->name('investment');
     Route::get('expenses', [ReportsController::class, 'expenses'])->name('expenses');
     Route::get('supervisors', [ReportsController::class, 'supervisors'])->name('supervisors');
+    Route::get('supervisor/members/{id}', [ReportsController::class, 'supervisorMembers'])->name('supervisor.members');
 });
+Route::get('/su', [ReportsController::class, 'subscribesIndex'])->name('subscribesIndex');
+Route::get('/search', [ReportsController::class, 'search']);
+Route::get('/calculateRemainingAmount/{subscriber}', [ReportsController::class, 'calculateRemainingAmount'])->name('calculateRemainingAmount');

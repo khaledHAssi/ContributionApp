@@ -13,15 +13,15 @@ use Carbon\Carbon;
     <title>investment</title>
 </head>
 <style>
-    table tr td,
-    table tr th {
-        padding: 10px 15px;
-    }
+    table tr td ,
+   table tr th  {
+           padding: 10px 15px ;
+   }
+
 </style>
-
 <body dir="rtl">
+   <h3>تقرير المشرفين</h3>
     <table border="1" cellspacing="0" cellpadding="0">
-
         <tr>
             <th>الإسم</th>
             <th>الإيميل</th>
@@ -30,32 +30,32 @@ use Carbon\Carbon;
             <th>مجمل قيمة مبالغ الإشتراكات</th>
         </tr>
         @if ($supervisors->isNotEmpty())
-        @foreach ($supervisors as $item)
-            <tr>
-                <td>{{ $item->name }}</td>
-                <td>{{ $item->email }}</td>
-                <td>{{ $item->phone }}</td>
-                <td>
-                    {{ $item->members->sum(function ($member) {
-                        return $member->subscribes->count();
-                    }) }}
-                </td>
-                @php
-                    $total = 0;
-                @endphp
-                @foreach ($item->members as $mm)
+            @foreach ($supervisors as $item)
+                <tr>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->email }}</td>
+                    <td>{{ $item->phone }}</td>
+                    <td>
+                        {{ $item->members->sum(function ($member) {
+                            return $member->subscribes->count();
+                        }) }}
+                    </td>
                     @php
-                        $total += $mm->subscribes->sum('value');
+                        $total = 0;
                     @endphp
-                @endforeach
-                <td>{{ $total }}</td>
+                    @foreach ($item->members as $mm)
+                        @php
+                            $total += $mm->subscribes->sum('value');
+                        @endphp
+                    @endforeach
+                    <td>{{ $total }}</td>
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="5" style="color: red">لا يوجد بيانات</td>
             </tr>
-        @endforeach
-    @else
-        <tr>
-            <td colspan="5" style="color: red">لا يوجد بيانات</td>
-        </tr>
-    @endif
+        @endif
 
 
     </table>

@@ -59,11 +59,20 @@
                             </td>
 
                             <td class="d-flex">
+                                <a href="{{ route('reports.supervisor.members', $supervisor) }}"
+                                class="ml-2 btn btn-primary btn-sm">
+                                التقرير
+                                <i class="fas fa-file"></i>
+
+                            </a>
                                 <a href="{{ route('supervisors.show', $supervisor->id) }}"
                                     class="btn btn-primary btn-sm mr-1"> <i class="fas fa-eye"></i> </a>
                                 <a href="{{ route('supervisors.edit', $supervisor) }}"
                                     class="ml-2 btn btn-primary btn-sm">
                                     <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{{ route('members.create', ['id' => $supervisor->id]) }}" class="ml-2 btn btn-primary btn-sm">
+                                    <i class="fas fa-plus"></i>
                                 </a>
                                 <form class="d-inline" action="{{ route('supervisors.destroy', $supervisor->id) }}"
                                     method="POST">

@@ -62,6 +62,11 @@
                             <td>{{ $user->phone }}</td>
                             <td>{{ $user->contributions }}</td>
                             <td class="d-flex">
+                                <a href="{{ route('reports.members.Subscribes', $user) }}"
+                                class="ml-2 btn btn-primary btn-sm">
+                                التقرير
+                                <i class="fas fa-file"></i>
+                            </a>
                                 <a href="{{ route('members.edit', $user) }}" class="ml-2 btn btn-primary btn-sm">
                                     <i class="fas fa-edit"></i>
                                 </a>
